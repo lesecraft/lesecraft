@@ -196,6 +196,133 @@
   }
   .order-item .handle{ font-size:20px; opacity:.6; }
   .order-item.dragging{ opacity:.4; }
+  .order-item.oc-0{ background:#FDE8A8; border-color:#C9A23E; }
+  .order-item.oc-1{ background:#BEE3D4; border-color:#4F9C7C; }
+  .order-item.oc-2{ background:#C9DEF5; border-color:#5A8FC9; }
+  .order-item.oc-3{ background:#F3C9E0; border-color:#C55D97; }
+  .order-item.oc-4{ background:#E4D4F7; border-color:#8B5FC9; }
+
+  /* ---------- Diamond vault ---------- */
+  .vault-card{
+    background:white; border:3px solid var(--diamond-dark); border-radius:12px;
+    padding:12px 14px; margin-bottom:16px; cursor:pointer; max-width:640px; width:100%;
+  }
+  .milestone-row{
+    display:flex; align-items:center; gap:14px; padding:12px; border-radius:10px; margin-bottom:10px;
+    background:#F5F0E4;
+  }
+  .milestone-row.unlocked{ background:#DFF3E8; }
+  .milestone-row .m-emoji{ font-size:32px; }
+  .milestone-row.locked .m-emoji{ filter:grayscale(1); opacity:.5; }
+
+  /* ---------- Color themes ---------- */
+  body.theme-nacht{ background: linear-gradient(180deg,#16202B 0%, #0F171F 55%, #1B2A18 55%, #101A0D 100%); }
+  body.theme-nacht .card,
+  body.theme-nacht .vault-card,
+  body.theme-nacht .stage-card,
+  body.theme-nacht .recipe-card,
+  body.theme-nacht .choice-btn,
+  body.theme-nacht .match-item,
+  body.theme-nacht .milestone-row{
+    background:#2A2F3A; color:#EDE7D9; border-color:#4A4F5A;
+  }
+  body.theme-nacht .read-text,
+  body.theme-nacht .recipe-name,
+  body.theme-nacht .stage-title{ color:#EDE7D9; }
+  body.theme-nacht .hub-greeting,
+  body.theme-nacht h2{ color:#EDE7D9 !important; }
+  body.theme-nacht .blank-slot{ color:#EDE7D9; }
+  body.theme-nacht .word-tile{ background:#4A4033; color:#EDE7D9; }
+  body.theme-nacht .feedback-banner.ok{ background:#274A2E; color:#CDEFB6; }
+  body.theme-nacht .feedback-banner.hint{ background:#4A3E1E; color:#FDE8B8; }
+
+  body.theme-ozean{ background: linear-gradient(180deg,#AEE4F5 0%, #6FC1E0 45%, #2E7FAE 45%, #205C82 100%); }
+  body.theme-ozean .card,
+  body.theme-ozean .vault-card,
+  body.theme-ozean .stage-card,
+  body.theme-ozean .recipe-card,
+  body.theme-ozean .choice-btn,
+  body.theme-ozean .match-item,
+  body.theme-ozean .milestone-row{
+    background:#EAF7FC; color:#123A52; border-color:#4EA8D8;
+  }
+  body.theme-ozean .read-text,
+  body.theme-ozean .recipe-name,
+  body.theme-ozean .stage-title{ color:#123A52; }
+  body.theme-ozean .hub-greeting,
+  body.theme-ozean h2{ color:#123A52 !important; }
+  body.theme-ozean .blank-slot{ color:#123A52; }
+  body.theme-ozean .word-tile{ background:#D6EFFA; color:#123A52; border-color:#4EA8D8; }
+  body.theme-ozean .feedback-banner.ok{ background:#CDEFB6; color:#2C4A17; }
+  body.theme-ozean .feedback-banner.hint{ background:#FDE8B8; color:#6B4F0A; }
+
+  /* ---------- Urkunde (themenfähig) ---------- */
+  .cert-card{ border-color:var(--gold-dark); background:linear-gradient(135deg,#FFF9EA,#FFF0C4); }
+  .cert-title{ color:var(--ink); text-shadow:none; }
+  .cert-date-text{ color:#888; }
+  body.theme-nacht .cert-card{ background:linear-gradient(135deg,#2E2A1A,#1F1B12); border-color:#F4C430; }
+  body.theme-nacht .cert-title{ color:#F4C430; text-shadow:none; }
+  body.theme-nacht .cert-date-text{ color:#B8B0A0; }
+  body.theme-ozean .cert-card{ background:linear-gradient(135deg,#EAF7FC,#CFEBF7); border-color:#2E7FAE; }
+  body.theme-ozean .cert-title{ color:#123A52; text-shadow:none; }
+  body.theme-ozean .cert-date-text{ color:#5A8FA8; }
+  body.theme-nacht .avatar-card, body.theme-nacht .clothing-chip{ background:#2A2F3A; border-color:#4A4F5A; }
+  body.theme-nacht .clothing-chip.equipped{ background:#3A3020; }
+  body.theme-nacht .cc-name{ color:#EDE7D9; }
+  body.theme-ozean .avatar-card, body.theme-ozean .clothing-chip{ background:#EAF7FC; border-color:#4EA8D8; }
+  body.theme-ozean .cc-name{ color:#123A52; }
+  body.theme-nacht .plot-item-chip{ background:#2A2F3A; color:#EDE7D9; }
+  body.theme-nacht .plot-item-chip.selected{ background:#3A3020; }
+  body.theme-nacht .plot-hint{ color:#B8B0A0; }
+  body.theme-ozean .plot-item-chip{ background:#EAF7FC; color:#123A52; }
+  body.theme-ozean .plot-hint{ color:#5A8FA8; }
+
+  .theme-swatch{
+    display:flex; align-items:center; gap:14px; padding:14px; border-radius:10px; margin-bottom:10px;
+    background:#F5F0E4; cursor:pointer; border:3px solid transparent;
+  }
+  .theme-swatch.selected{ border-color:var(--gold-dark); background:#FFF6DC; }
+  .theme-swatch.locked{ opacity:.5; cursor:not-allowed; }
+  .theme-preview{ width:44px; height:44px; border-radius:10px; flex-shrink:0; border:2px solid rgba(0,0,0,.2); }
+
+  /* ---------- Pixel character (Steve-Stil, nahtlos) ---------- */
+  .pixel-char{
+    position:relative; width:var(--pc-size,100px); height:calc(var(--pc-size,100px)*1.25);
+    margin:0 auto; user-select:none;
+  }
+  .pc-part{ position:absolute; border:1.5px solid rgba(0,0,0,.35); box-sizing:border-box; }
+  .pc-head{ top:0; left:30%; width:40%; height:32%; overflow:hidden; z-index:2; }
+  .pc-body{ top:32%; left:30%; width:40%; height:29%; z-index:1; }
+  .pc-arm{ top:32%; width:15%; height:29%; z-index:1; }
+  .pc-arm.left{ left:15%; } .pc-arm.right{ right:15%; }
+  .pc-leg{ top:61%; width:20%; height:39%; z-index:1; }
+  .pc-leg.left{ left:30%; } .pc-leg.right{ left:50%; }
+
+  .pc-face-grid{
+    position:absolute; inset:0; display:grid;
+    grid-template-columns:repeat(8,1fr); grid-template-rows:repeat(8,1fr);
+  }
+  .pc-face-cell{ width:100%; height:100%; }
+  .pc-print{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:calc(var(--pc-size,100px)*0.16); line-height:1; pointer-events:none;
+  }
+
+  .avatar-card{ background:white; border:3px solid var(--stone); border-radius:12px; padding:14px; margin-bottom:16px; max-width:640px; width:100%; text-align:center; cursor:pointer; }
+  .clothing-section{ margin-bottom:18px; }
+  .clothing-section h4{ font-size:14px; color:var(--ink); margin-bottom:8px; }
+  .clothing-grid{ display:flex; flex-wrap:wrap; gap:10px; }
+  .clothing-chip{
+    display:flex; flex-direction:column; align-items:center; gap:4px; padding:10px 8px; border-radius:10px;
+    background:#F5F0E4; border:3px solid transparent; cursor:pointer; width:78px; text-align:center;
+  }
+  .clothing-chip.equipped{ border-color:var(--gold-dark); background:#FFF6DC; }
+  .clothing-chip.locked{ opacity:.5; cursor:not-allowed; }
+  .clothing-chip .cc-emoji{ font-size:24px; }
+  .clothing-chip .cc-swatch{ width:26px; height:26px; border-radius:6px; border:2px solid rgba(0,0,0,.2); }
+  .clothing-chip .cc-headmini{ width:26px; height:26px; border-radius:4px; border:1.5px solid rgba(0,0,0,.35); overflow:hidden; position:relative; }
+  .clothing-chip .cc-name{ font-size:.7rem; font-weight:700; line-height:1.2; }
+  .clothing-chip .cc-cost{ font-size:.68rem; color:#888; }
 
   .choice-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px; }
   @media (max-width:420px){ .choice-grid{ grid-template-columns:1fr; } }
@@ -236,6 +363,7 @@
     padding:8px 14px; cursor:pointer;
   }
   .toggle-btn.active{ background:var(--gold); border-color:var(--gold-dark); }
+  .toggle-btn:disabled{ opacity:.5; cursor:not-allowed; }
 
   .stars-row{ font-size:22px; letter-spacing:4px; }
   footer-nav{ display:none; }
@@ -283,9 +411,57 @@
   .showcase-item{ font-size:30px; background:#FFF6DC; border:2px solid var(--gold-dark); border-radius:8px; padding:6px 10px; }
   .empty-note{ font-family:var(--font-read); font-weight:700; color:#888; font-size:.95rem; }
 
+  /* ---------- Grundstück (Werkstatt) ---------- */
+  .terrain-picker{ display:flex; gap:6px; flex-wrap:wrap; justify-content:center; margin-bottom:12px; }
+  .plot-grid{
+    display:grid; gap:2px; background:rgba(0,0,0,.15); border:4px solid var(--dirt-dark); border-radius:8px;
+    overflow:hidden; max-width:360px; aspect-ratio:1; margin:0 auto 14px;
+  }
+  .plot-cell{
+    position:relative; aspect-ratio:1; display:flex; align-items:center; justify-content:center;
+    font-size:clamp(14px, 5vw, 26px); cursor:pointer; touch-action:none;
+  }
+  .plot-cell.drop-hover{ outline:3px dashed var(--gold-dark); outline-offset:-3px; }
+  .plot-inventory{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center; margin-bottom:8px; }
+  .plot-item-chip{
+    display:flex; flex-direction:column; align-items:center; gap:2px; padding:8px 10px; border-radius:10px;
+    background:#F5F0E4; border:3px solid transparent; cursor:grab; min-width:52px;
+  }
+  .plot-item-chip.selected{ border-color:var(--gold-dark); background:#FFF6DC; }
+  .plot-item-chip.empty{ opacity:.35; cursor:not-allowed; }
+  .plot-item-chip .pic-count{ font-size:.68rem; font-weight:700; color:#666; }
+  .plot-hint{ font-family:var(--font-read); font-size:.85rem; color:#777; text-align:center; margin:4px 0 0; }
+  .plot-name-input{
+    display:block; width:100%; max-width:340px; margin:0 auto 14px; text-align:center;
+    font-family:var(--font-pixel); font-size:13px; padding:10px; border-radius:8px;
+    border:3px solid var(--dirt-dark); background:#FFF8E7; color:var(--ink);
+  }
+  .plot-ghost{
+    position:fixed; z-index:200; font-size:28px; pointer-events:none; transform:translate(-50%,-50%);
+    opacity:.85;
+  }
+
   /* ---------- Syllables ---------- */
   .syl-0{ color:#C6543F; }
   .syl-1{ color:#2E6FA3; }
+
+  /* ---------- Read-aloud (microphone) ---------- */
+  .mic-btn{
+    background:#8C4DB8; color:white; border:none; border-radius:50%;
+    width:56px; height:56px; font-size:24px; cursor:pointer; box-shadow:0 4px 0 #6B3690;
+    flex-shrink:0; transition:transform .1s;
+  }
+  .mic-btn:active{ transform:translateY(3px); box-shadow:none; }
+  .mic-btn.listening{ background:#C6543F; box-shadow:0 4px 0 #93392A; animation:mic-pulse 1s ease-in-out infinite; }
+  @keyframes mic-pulse{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.08); } }
+  .readaloud-row{ display:flex; align-items:center; gap:12px; margin-top:16px; flex-wrap:wrap; }
+  .readaloud-status{ font-family:var(--font-read); font-weight:700; color:var(--dirt-dark); font-size:.95rem; }
+  .readaloud-result{ margin-top:14px; padding:14px; border-radius:10px; background:#F5F0E4; }
+  .word-check{ display:inline-block; padding:2px 5px; margin:2px 1px; border-radius:5px; font-weight:700; }
+  .word-check.correct{ background:#CDEFB6; color:#2C4A17; }
+  .word-check.miss{ background:#FDE0C8; color:#8A4A0A; border-bottom:2px dotted #C6803F; }
+  .readaloud-summary{ margin-top:10px; font-weight:700; color:var(--ink); }
+  .readaloud-unsupported{ font-size:.9rem; color:#888; font-style:italic; margin-top:10px; }
 
   /* ---------- Stage select ---------- */
   .stage-card{
@@ -306,6 +482,7 @@
   .stage-card.stage-bonus{ border-color:var(--gold-dark); background:linear-gradient(135deg,#FFF6DC,#FFE9A8); }
   .stage-card.stage-bonus .stage-num{ background:var(--gold); }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -339,6 +516,21 @@
     </div>
   </div>
   <h2 style="color:var(--night); text-shadow:none; font-size:16px; margin-bottom:14px;" id="hub-greeting">Wähle eine Welt, <span id="hub-name">Anton</span>!</h2>
+  <div class="avatar-card" id="hub-avatar-card" onclick="openCharacterScreen()">
+    <div id="hub-avatar-render" style="--pc-size:110px;"></div>
+    <div style="font-weight:700; font-size:.85rem; color:var(--ink); margin-top:6px;">🧑 Charakter anpassen</div>
+  </div>
+  <div id="mascot-row" class="hidden" style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+    <span style="font-size:34px;">🐉</span>
+    <span class="read-text" style="font-size:.95rem; background:white; border-radius:10px; padding:8px 12px; border:2px solid var(--stone);" id="mascot-text">Hallo! Ich bin dein Begleiter!</span>
+  </div>
+  <div class="vault-card" id="vault-card" onclick="openVault()">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+      <span style="font-weight:700; font-size:.9rem; color:var(--ink);">💎 Diamant-Tresor</span>
+      <span style="font-size:.8rem; color:#888;" id="vault-label">0/30</span>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="vault-fill" style="width:0%"></div></div>
+  </div>
   <div class="material-bar" id="hub-material-bar"></div>
   <div class="world-grid" id="world-grid"></div>
   <div class="bottom-actions">
@@ -352,7 +544,7 @@
   <div class="topbar">
     <button class="icon-btn" onclick="goToHub()">⬅️</button>
     <h2 style="color:var(--night); text-shadow:none; font-size:16px; margin:0;" id="stageselect-title">Welt</h2>
-    <div style="width:44px;"></div>
+    <button class="icon-btn" onclick="openCharacterScreen()">🧑</button>
   </div>
   <div class="world-grid" id="stage-grid" style="grid-template-columns:1fr; max-width:420px;"></div>
 </div>
@@ -362,7 +554,8 @@
   <div class="topbar">
     <button class="icon-btn" onclick="goToHub()">⬅️</button>
     <h2 style="color:var(--night); text-shadow:none; font-size:16px; margin:0;">🔨 Werkstatt</h2>
-    <div style="width:44px;"></div>
+    <button class="icon-btn" onclick="openCharacterScreen()">🧑</button>
+    <div class="score-pill">💎 <span id="workshop-diamonds">0</span></div>
   </div>
   <div class="material-bar" id="workshop-material-bar"></div>
   <div class="card">
@@ -370,8 +563,15 @@
     <div class="recipe-grid" id="recipe-grid"></div>
   </div>
   <div class="card" style="margin-top:18px;">
-    <h3 style="color:var(--ink); text-shadow:none; font-size:16px;">Deine Vitrine</h3>
-    <div class="showcase-strip" id="showcase-strip"></div>
+    <h3 style="color:var(--ink); text-shadow:none; font-size:16px; margin-top:0;">🏡</h3>
+    <input type="text" id="plot-name-input" class="plot-name-input" placeholder="Name für dein Grundstück ..." maxlength="30" oninput="setPlotName(this.value)">
+    <div class="terrain-picker" id="terrain-picker"></div>
+    <div class="plot-grid" id="plot-grid"></div>
+    <div class="plot-inventory" id="plot-inventory"></div>
+    <p class="plot-hint" id="plot-hint">Tippe ein Ding an, dann eine Stelle auf dem Grundstück – oder zieh es direkt dorthin.</p>
+    <div class="bottom-actions" style="margin-top:10px;">
+      <button class="block-btn stone" onclick="downloadPlot()">⬇️ Grundstück herunterladen</button>
+    </div>
   </div>
 </div>
 
@@ -426,6 +626,22 @@
         <span class="read-text" style="font-size:1.05rem;">Schriftart</span>
         <button class="toggle-btn" id="font-toggle" onclick="toggleDyslexicFont()">🔤 OpenDyslexic</button>
       </div>
+      <div class="settings-row" id="theme-row">
+        <span class="read-text" style="font-size:1.05rem;">Farbthema</span>
+        <button class="block-btn stone" id="theme-btn" onclick="openThemePicker()">🎨 Auswählen</button>
+      </div>
+      <div class="settings-row">
+        <span class="read-text" style="font-size:1.05rem;">Sound</span>
+        <button class="toggle-btn active" id="sound-toggle" onclick="toggleSound()">🔊 Ein/Aus</button>
+      </div>
+      <div class="settings-row">
+        <span class="read-text" style="font-size:1.05rem;">Erfolge</span>
+        <button class="block-btn stone" onclick="openAchievements()">🏅 Ansehen</button>
+      </div>
+      <div class="settings-row" id="certificate-row">
+        <span class="read-text" style="font-size:1.05rem;">Urkunde</span>
+        <button class="block-btn stone" id="certificate-btn" onclick="openCertificate()">📜 Ansehen</button>
+      </div>
       <div class="settings-row">
         <span class="read-text" style="font-size:1.05rem;">Fortschritt</span>
         <button class="block-btn stone" onclick="resetProgress()">Zurücksetzen</button>
@@ -444,6 +660,85 @@
     </div>
     <div class="bottom-actions">
       <button class="block-btn gold" onclick="closeSettings()">Fertig</button>
+    </div>
+  </div>
+</div>
+
+<!-- VAULT OVERLAY -->
+<div id="screen-vault" class="screen hidden" style="position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:106; justify-content:center;">
+  <div class="card" style="max-height:85vh; overflow-y:auto;">
+    <h2 style="color:var(--ink); text-shadow:none; font-size:20px;">💎 Diamant-Tresor</h2>
+    <p class="read-text" style="font-size:.95rem;">Insgesamt gesammelt: <strong id="vault-total">0</strong> Diamanten</p>
+    <div id="vault-milestones"></div>
+    <div class="bottom-actions">
+      <button class="block-btn gold" onclick="closeVault()">Schließen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div id="screen-achievements" class="screen hidden" style="position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:109; justify-content:center;">
+  <div class="card" style="max-height:85vh; overflow-y:auto;">
+    <h2 style="color:var(--ink); text-shadow:none; font-size:20px;">🏅 Deine Erfolge</h2>
+    <p class="read-text" id="achievements-count" style="font-size:.9rem; color:#777;"></p>
+    <div id="achievements-list"></div>
+    <div class="bottom-actions">
+      <button class="block-btn gold" onclick="closeAchievements()">Schließen</button>
+    </div>
+  </div>
+</div>
+
+<!-- CHARACTER SCREEN -->
+<div id="screen-character" class="screen hidden" style="position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:108; justify-content:flex-start; overflow-y:auto; padding-top:24px;">
+  <div style="width:100%; max-width:640px; margin:0 auto;">
+    <div class="topbar" style="max-width:none;">
+      <button class="icon-btn" onclick="closeCharacterScreen()">⬅️</button>
+      <h2 style="color:var(--cream); text-shadow:2px 2px 0 rgba(0,0,0,.4); font-size:16px; margin:0;">🧑 Charakter</h2>
+      <div class="score-pill">💎 <span id="character-diamonds">0</span></div>
+    </div>
+    <div class="avatar-card" style="cursor:default;">
+      <div id="character-render" style="--pc-size:150px;"></div>
+    </div>
+    <div class="card" id="clothing-shop"></div>
+  </div>
+</div>
+
+<!-- THEME PICKER -->
+<div id="screen-theme" class="screen hidden" style="position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:107; justify-content:center;">
+  <div class="card">
+    <h2 style="color:var(--ink); text-shadow:none; font-size:20px;">🎨 Farbthema wählen</h2>
+    <div id="theme-list"></div>
+    <div class="bottom-actions">
+      <button class="block-btn gold" onclick="closeThemePicker()">Fertig</button>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATE -->
+<div id="screen-certificate" class="screen hidden" style="position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:115; justify-content:center;">
+  <div class="card cert-card" id="certificate-card" style="text-align:center;">
+    <div style="font-size:44px;">🏆</div>
+    <h2 class="cert-title" style="font-size:22px; font-family:var(--font-pixel); margin:10px 0;">URKUNDE</h2>
+    <div id="cert-avatar" style="margin:8px 0;"></div>
+    <p class="read-text" style="font-size:1.1rem;">verliehen an</p>
+    <p class="read-text" id="cert-name" style="font-size:1.6rem; font-weight:700; margin:6px 0;"></p>
+    <p class="read-text" id="cert-stats" style="font-size:1rem; margin-bottom:6px;"></p>
+    <p class="read-text cert-date-text" style="font-size:.9rem;" id="cert-date"></p>
+    <div class="bottom-actions no-print" id="cert-actions">
+      <button class="block-btn gold big" onclick="downloadCertificate()">⬇️ Herunterladen</button>
+      <button class="block-btn stone" onclick="closeCertificate()">Schließen</button>
+    </div>
+  </div>
+</div>
+
+<!-- MILESTONE POPUP -->
+<div id="screen-milestone" class="screen hidden" style="position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:120; justify-content:center;">
+  <div class="card" style="text-align:center;">
+    <div style="font-size:56px; margin-bottom:8px;" id="milestone-emoji">🎉</div>
+    <h2 style="color:var(--ink); text-shadow:none; font-size:20px;" id="milestone-title">Neuer Meilenstein!</h2>
+    <p class="read-text" id="milestone-desc" style="font-size:calc(1.1rem*var(--text-scale));"></p>
+    <div class="bottom-actions">
+      <button class="block-btn gold big" onclick="closeMilestonePopup()">Super! 🎉</button>
     </div>
   </div>
 </div>
@@ -798,13 +1093,114 @@ const MATERIAL_INFO = {
 };
 const RECIPES = [
   { id:'haus', name:'Haus', emoji:'🏠', needs:{ holz:5 } },
-  { id:'schwert', name:'Schwert', emoji:'🗡️', needs:{ stein:3 } },
-  { id:'laterne', name:'Geisterlaterne', emoji:'🏮', needs:{ schleim:5 } },
-  { id:'boot', name:'Boot', emoji:'⛵', needs:{ holz:3, perle:2 } },
-  { id:'truhe', name:'Schatztruhe', emoji:'🧰', needs:{ gold:4 } },
-  { id:'ruestung', name:'Rüstung', emoji:'🛡️', needs:{ stein:4, gold:2 } },
+  { id:'baum', name:'Baum', emoji:'🌳', needs:{ holz:4 } },
+  { id:'mauer', name:'Mauerstück', emoji:'🧱', needs:{ stein:4 } },
+  { id:'weg', name:'Weg', emoji:'🟫', needs:{ stein:2 } },
+  { id:'zaun', name:'Zaun', emoji:'🪵', needs:{ holz:2 } },
+  { id:'blumenbeet', name:'Blumenbeet', emoji:'🌷', needs:{ holz:1, gold:1 } },
+  { id:'kuerbisdeko', name:'Kürbis-Deko', emoji:'🎃', needs:{ schleim:3, gold:1 } },
+  { id:'brunnen', name:'Brunnen', emoji:'⛲', needs:{ perle:3, stein:1 } },
+  { id:'ruestung', name:'Rüstung', emoji:'🛡️', needs:{ stein:4, gold:2 }, placeable:false },
   { id:'statue', name:'Diamant-Statue', emoji:'🗿', needs:{ holz:2, stein:2, schleim:2, perle:2, gold:2 } },
+  { id:'regenbogen', name:'Regenbogen-Statue', emoji:'🌈', needs:{ holz:1, stein:1, schleim:1, perle:1, gold:1 }, diamondCost:20, milestoneGate:'rainbow' },
 ];
+
+const MILESTONES = [
+  { threshold:30, id:'mascot', title:'Ein Begleiter!', emoji:'🐉', desc:'Ab jetzt begleitet dich ein kleiner Drache im Hub!' },
+  { threshold:75, id:'themes', title:'Farbthemen!', emoji:'🎨', desc:'Du kannst jetzt in den Einstellungen zwischen verschiedenen Farbthemen wählen.' },
+  { threshold:150, id:'certificate', title:'Urkunde freigeschaltet!', emoji:'📜', desc:'Du kannst dir jetzt eine Urkunde ansehen und ausdrucken.' },
+  { threshold:300, id:'rainbow', title:'Regenbogen-Statue!', emoji:'🌈', desc:'Ein besonderes Rezept ist jetzt in der Werkstatt freigeschaltet.' },
+  { threshold:500, id:'plot5', title:'Größeres Grundstück!', emoji:'🏡', desc:'Dein Grundstück in der Werkstatt ist jetzt 5×5 Felder groß!' },
+  { threshold:700, id:'plot6', title:'Riesiges Grundstück!', emoji:'🏰', desc:'Dein Grundstück in der Werkstatt ist jetzt 6×6 Felder groß!' },
+];
+const DIAMOND_PER_MISSING_UNIT = 3;
+
+/* ===================== SOUND EFFECTS ===================== */
+function playTone(freq, duration, delay, type){
+  if(!state.soundEnabled) return;
+  try{
+    const ctx = window.__audioCtx || (window.__audioCtx = new (window.AudioContext||window.webkitAudioContext)());
+    setTimeout(()=>{
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.14, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    }, delay || 0);
+  }catch(e){ /* Web Audio nicht verfügbar - stumm ignorieren */ }
+}
+function playCorrectSound(){
+  playTone(880, 0.15, 0);
+  playTone(1174, 0.2, 100);
+}
+function playCraftSound(){
+  playTone(523, 0.12, 0);
+  playTone(659, 0.12, 90);
+  playTone(784, 0.18, 180);
+}
+const TERRAINS = [
+  { id:'wald', name:'Wald', emoji:'🌳', colors:['#6FAE43','#5B8C3A'] },
+  { id:'bergwerk', name:'Bergwerk', emoji:'⛏️', colors:['#9C9C9C','#8C8C8C'] },
+  { id:'zombiedorf', name:'Nacht', emoji:'🌙', colors:['#3A3355','#332D4A'] },
+  { id:'ozean', name:'Ozean', emoji:'🌊', colors:['#5FB8DE','#4EA8D8'] },
+  { id:'wueste', name:'Wüste', emoji:'🏜️', colors:['#E8C77E','#DBB968'] },
+];
+const THEMES = [
+  { id:'standard', name:'Standard', emoji:'🌳', unlockAt:0, previewGradient:'linear-gradient(135deg,#7EC8E3,#5B8C3A)' },
+  { id:'ozean', name:'Ozean-Thema', emoji:'🌊', unlockAt:75, previewGradient:'linear-gradient(135deg,#AEE4F5,#205C82)' },
+  { id:'nacht', name:'Nacht-Thema', emoji:'🌙', unlockAt:75, previewGradient:'linear-gradient(135deg,#2A2F3A,#0F171F)' },
+];
+
+// 8x8-Kopf-Raster: H=Haar, S=Haut, W=Augen-Weiß, E=Augenfarbe, M=Mund
+const FACE_GRID = [
+  'HHHHHHHH',
+  'HHHHHHHH',
+  'HSSSSSSH',
+  'SSSSSSSS',
+  'SWESSEWS',
+  'SSSSSSSS',
+  'SSHMMHSS',
+  'SSSSSSSS',
+];
+const SKIN_TONE = '#E8B382';
+const MOUTH_COLOR = '#8B4A3C';
+
+const CLOTHING = {
+  headDesign: [
+    { id:'a', name:'Braun & Blau',   cost:0,  hair:'#3B2A1A', eye:'#3B6EA5' },
+    { id:'b', name:'Schwarz & Grün', cost:15, hair:'#1A1A1A', eye:'#4C8C4C' },
+    { id:'c', name:'Blond & Braun',  cost:15, hair:'#D9B45C', eye:'#6B4A2E' },
+    { id:'d', name:'Rot & Grau',     cost:20, hair:'#B5502A', eye:'#7A7A7A' },
+  ],
+  shirt: [
+    { id:'teal', name:'Türkis', cost:0, color:'#3E9C93' },
+    { id:'blue', name:'Blau', cost:10, color:'#4A90D9' },
+    { id:'green', name:'Grün', cost:10, color:'#5BA85B' },
+    { id:'red', name:'Rot', cost:10, color:'#C6543F' },
+    { id:'armor', name:'Ritter-Rüstung', cost:0, color:'#B8BEC7', unlockedByCraft:'ruestung' },
+    { id:'gold', name:'Gold', cost:35, color:'#F4C430' },
+  ],
+  pants: [
+    { id:'darkblue', name:'Dunkelblau', cost:0, color:'#3B3F6B' },
+    { id:'brown', name:'Braun', cost:8, color:'#5C4A33' },
+    { id:'black', name:'Schwarz', cost:15, color:'#3A3A3A' },
+    { id:'purple', name:'Lila', cost:20, color:'#6B4A8A' },
+  ],
+  print: [
+    { id:'none', name:'Ohne', cost:0, emoji:'' },
+    { id:'diamond', name:'Diamant', cost:10, emoji:'💎' },
+    { id:'star', name:'Stern', cost:10, emoji:'⭐' },
+    { id:'lightning', name:'Blitz', cost:15, emoji:'⚡' },
+    { id:'ghost', name:'Geist', cost:15, emoji:'👻' },
+    { id:'pickaxe', name:'Spitzhacke', cost:20, emoji:'⛏️' },
+    { id:'fire', name:'Feuer', cost:20, emoji:'🔥' },
+    { id:'rainbow', name:'Regenbogen', cost:0, emoji:'🌈', unlockedByMilestone:300 },
+  ],
+};
 
 /* ===================== STATE ===================== */
 
@@ -821,6 +1217,15 @@ let state = {
   lastLoginDate:null,
   streak:0,
   stats:{ totalCorrect:0, totalWrong:0, wordMistakes:{} },
+  totalDiamondsEarned:0,
+  milestonesSeen:{},
+  pendingMilestones:[],
+  theme:'standard',
+  soundEnabled:true,
+  dailyLog:{},
+  avatar:{ headDesign:'a', shirt:'teal', pants:'darkblue', print:'none' },
+  ownedClothing:{ headDesign:['a'], shirt:['teal'], pants:['darkblue'], print:['none'] },
+  plot:{ terrain:'wald', placed:[], charPos:null, name:'' },
 };
 
 let currentWorld = null;
@@ -875,6 +1280,53 @@ function migrateOldSave(){
     while(state.stageStars[w.id].length < 4) state.stageStars[w.id].push(0);
   });
   if(!state.stats) state.stats = { totalCorrect:0, totalWrong:0, wordMistakes:{} };
+  if(state.totalDiamondsEarned === undefined){
+    // Bestehende Spieler starten fair: bereits vorhandene Diamanten zählen rückwirkend zum Tresor.
+    state.totalDiamondsEarned = state.diamonds || 0;
+  }
+  if(!state.milestonesSeen) state.milestonesSeen = {};
+  if(!state.pendingMilestones) state.pendingMilestones = [];
+  if(state.theme === undefined){
+    // Alte Spielstände hatten "darkMode" (true/false) statt "theme" (Auswahl mehrerer Themen).
+    state.theme = state.darkMode ? 'nacht' : 'standard';
+  }
+  delete state.darkMode;
+  if(state.avatar && state.avatar.headDesign === undefined && state.avatar.head !== undefined){
+    // Der Charakter wurde komplett neu gestaltet (Steve-Stil). Alte Kleidung gibt's nicht mehr -
+    // alle dafür ausgegebenen Diamanten werden zurückerstattet, damit niemand etwas verliert.
+    const OLD_COSTS = {
+      head:{cap:10,helm:25,pilot:20,crown:60},
+      face:{happy:10,wink:10,cool:15,party:20},
+      body:{shirt_green:10,shirt_red:10,shirt_gold:35},
+      legs:{pants_blue:8,pants_black:20},
+      cape:{red:15,blue:15,diamond:40},
+    };
+    let refund = 0;
+    Object.keys(OLD_COSTS).forEach(slot=>{
+      const owned = (state.ownedClothing && state.ownedClothing[slot]) || [];
+      owned.forEach(id=>{ if(OLD_COSTS[slot][id]) refund += OLD_COSTS[slot][id]; });
+    });
+    state.diamonds = (state.diamonds||0) + refund;
+    state.avatar = { headDesign:'a', shirt:'teal', pants:'darkblue', print:'none' };
+    state.ownedClothing = { headDesign:['a'], shirt:['teal'], pants:['darkblue'], print:['none'] };
+  }
+  if(!state.avatar) state.avatar = { headDesign:'a', shirt:'teal', pants:'darkblue', print:'none' };
+  if(!state.ownedClothing) state.ownedClothing = { headDesign:['a'], shirt:['teal'], pants:['darkblue'], print:['none'] };
+  if(!state.plot) state.plot = { terrain:'wald', placed:[], charPos:null, name:'' };
+  if(state.plot.name === undefined) state.plot.name = '';
+  if(state.soundEnabled === undefined) state.soundEnabled = true;
+  if(!state.dailyLog) state.dailyLog = {};
+  pruneDailyLog();
+  if(!Array.isArray(state.plot.placed)) state.plot.placed = [];
+  // Gegenstände, die es nicht mehr gibt (z.B. altes Schwert/Boot/Truhe/Laterne), vom Grundstück entfernen
+  state.plot.placed = state.plot.placed.filter(p => RECIPES.some(r => r.id === p.itemId));
+  // Meilensteine, die durch den rückwirkenden Startwert bereits erreicht sind, sofort als gesehen markieren
+  // (kein nachträgliches Popup für Fortschritt, der schon vor diesem Update da war).
+  MILESTONES.forEach(m=>{
+    if(state.totalDiamondsEarned >= m.threshold && !(m.id in state.milestonesSeen)){
+      state.milestonesSeen[m.id] = true;
+    }
+  });
   delete state.worldStars;
   saveState();
 }
@@ -888,7 +1340,8 @@ function startGame(){
 }
 
 function resetProgress(){
-  state = { name: state.name || 'Anton', diamonds:0, stageStars:{wald:[0,0,0,0],bergwerk:[0,0,0,0],zombiedorf:[0,0,0,0],ozean:[0,0,0,0],wueste:[0,0,0,0]}, materials:{holz:0,stein:0,schleim:0,perle:0,gold:0}, craftedCounts:{}, textScale:state.textScale, speechRate:state.speechRate, showSyllables:state.showSyllables, dyslexicFont:state.dyslexicFont, lastLoginDate:null, streak:0, stats:{totalCorrect:0,totalWrong:0,wordMistakes:{}} };
+  state = { name: state.name || 'Anton', diamonds:0, stageStars:{wald:[0,0,0,0],bergwerk:[0,0,0,0],zombiedorf:[0,0,0,0],ozean:[0,0,0,0],wueste:[0,0,0,0]}, materials:{holz:0,stein:0,schleim:0,perle:0,gold:0}, craftedCounts:{}, textScale:state.textScale, speechRate:state.speechRate, showSyllables:state.showSyllables, dyslexicFont:state.dyslexicFont, lastLoginDate:null, streak:0, stats:{totalCorrect:0,totalWrong:0,wordMistakes:{}}, totalDiamondsEarned:0, milestonesSeen:{}, pendingMilestones:[], theme:'standard', avatar:{headDesign:'a',shirt:'teal',pants:'darkblue',print:'none'}, ownedClothing:{headDesign:['a'],shirt:['teal'],pants:['darkblue'],print:['none']}, plot:{terrain:'wald',placed:[],charPos:null,name:''}, soundEnabled:state.soundEnabled, dailyLog:{} };
+  applyTheme();
   saveState();
   document.getElementById('start-new').classList.remove('hidden');
   document.getElementById('start-continue').classList.add('hidden');
@@ -908,7 +1361,11 @@ function goToHub(){
   document.getElementById('hub-diamonds').textContent = state.diamonds;
   renderWorldGrid();
   renderMaterialBar('hub-material-bar');
+  renderVaultBar();
+  renderMascot();
+  renderHubAvatar();
   maybeShowDailyBonus();
+  maybeShowMilestonePopup();
 }
 
 function renderMaterialBar(targetId){
@@ -920,19 +1377,111 @@ function renderMaterialBar(targetId){
   }).join('');
 }
 
+/* ===================== DIAMOND VAULT / MILESTONES ===================== */
+function checkMilestones(){
+  MILESTONES.forEach(m=>{
+    if(state.totalDiamondsEarned >= m.threshold && !state.milestonesSeen[m.id]){
+      state.milestonesSeen[m.id] = true;
+      state.pendingMilestones.push(m.id);
+    }
+  });
+  saveState();
+}
+function nextMilestone(){
+  return MILESTONES.find(m => !state.milestonesSeen[m.id]) || null;
+}
+function renderVaultBar(){
+  const next = nextMilestone();
+  const fill = document.getElementById('vault-fill');
+  const label = document.getElementById('vault-label');
+  if(!next){
+    fill.style.width = '100%';
+    label.textContent = `${state.totalDiamondsEarned} · alle Belohnungen freigeschaltet! 🎉`;
+    return;
+  }
+  const prevThreshold = [...MILESTONES].reverse().find(m => state.totalDiamondsEarned >= m.threshold && m.threshold < next.threshold);
+  const base = prevThreshold ? prevThreshold.threshold : 0;
+  const pct = Math.min(100, Math.round(((state.totalDiamondsEarned - base) / (next.threshold - base)) * 100));
+  fill.style.width = pct + '%';
+  label.textContent = `${state.totalDiamondsEarned}/${next.threshold}`;
+}
+function openVault(){
+  document.getElementById('vault-total').textContent = state.totalDiamondsEarned;
+  const box = document.getElementById('vault-milestones');
+  box.innerHTML = MILESTONES.map(m=>{
+    const unlocked = state.totalDiamondsEarned >= m.threshold;
+    return `
+      <div class="milestone-row ${unlocked ? 'unlocked' : 'locked'}">
+        <span class="m-emoji">${m.emoji}</span>
+        <div>
+          <div style="font-weight:700;">${escapeHtml(m.title)} <span style="font-weight:400; color:#888; font-size:.85rem;">(${m.threshold} 💎)</span></div>
+          <div style="font-size:.9rem; color:${unlocked ? '#2C4A17' : '#888'};">${unlocked ? 'Freigeschaltet ✅' : escapeHtml(m.desc)}</div>
+        </div>
+      </div>`;
+  }).join('');
+  document.getElementById('screen-vault').classList.remove('hidden');
+  document.getElementById('screen-vault').style.display = 'flex';
+}
+function closeVault(){
+  document.getElementById('screen-vault').classList.add('hidden');
+}
+function maybeShowMilestonePopup(){
+  if(!state.pendingMilestones || state.pendingMilestones.length === 0) return;
+  const id = state.pendingMilestones[0];
+  const m = MILESTONES.find(x=>x.id===id);
+  if(!m) { state.pendingMilestones.shift(); saveState(); return; }
+  document.getElementById('milestone-emoji').textContent = m.emoji;
+  document.getElementById('milestone-title').textContent = m.title;
+  document.getElementById('milestone-desc').textContent = m.desc;
+  document.getElementById('screen-milestone').classList.remove('hidden');
+  document.getElementById('screen-milestone').style.display = 'flex';
+}
+function closeMilestonePopup(){
+  document.getElementById('screen-milestone').classList.add('hidden');
+  state.pendingMilestones.shift();
+  saveState();
+  renderVaultBar();
+  renderMascot();
+  updateSettingsUI();
+  setTimeout(maybeShowMilestonePopup, 300);
+}
+function renderMascot(){
+  const row = document.getElementById('mascot-row');
+  if(state.totalDiamondsEarned >= 30){
+    row.classList.remove('hidden');
+  } else {
+    row.classList.add('hidden');
+  }
+}
+
 /* ===================== WORKSHOP ===================== */
 function openWorkshop(){
   showScreen('workshop');
+  document.getElementById('workshop-diamonds').textContent = state.diamonds;
+  document.getElementById('plot-name-input').value = state.plot.name || '';
   renderMaterialBar('workshop-material-bar');
   renderRecipes();
-  renderShowcase();
+  renderPlot();
+}
+let plotNameSaveTimer = null;
+function setPlotName(value){
+  state.plot.name = value.slice(0,30);
+  clearTimeout(plotNameSaveTimer);
+  plotNameSaveTimer = setTimeout(saveState, 400); // nicht bei jedem Tastendruck einzeln speichern
 }
 
 function renderRecipes(){
   const grid = document.getElementById('recipe-grid');
   grid.innerHTML = '';
   RECIPES.forEach(r=>{
+    if(r.milestoneGate){
+      const gate = MILESTONES.find(m=>m.id===r.milestoneGate);
+      if(gate && state.totalDiamondsEarned < gate.threshold) return; // noch nicht freigeschaltet - gar nicht anzeigen
+    }
     const have = Object.keys(r.needs).every(k => (state.materials[k]||0) >= r.needs[k]);
+    const missingUnits = Object.keys(r.needs).reduce((sum,k)=> sum + Math.max(0, r.needs[k] - (state.materials[k]||0)), 0);
+    const diamondFillCost = missingUnits * DIAMOND_PER_MISSING_UNIT + (r.diamondCost||0);
+    const canFillWithDiamonds = !have && missingUnits > 0 && state.diamonds >= diamondFillCost;
     const count = state.craftedCounts[r.id] || 0;
     const card = document.createElement('div');
     card.className = 'recipe-card' + (count>0 ? ' crafted-glow' : '');
@@ -948,9 +1497,11 @@ function renderRecipes(){
             const cls = owned >= need ? 'enough' : 'short';
             return `<span class="need-pill ${cls}">${MATERIAL_INFO[k].emoji} ${owned}/${need}</span>`;
           }).join('')}
+          ${r.diamondCost ? `<span class="need-pill ${state.diamonds>=r.diamondCost?'enough':'short'}">💎 ${state.diamonds}/${r.diamondCost}</span>` : ''}
         </div>
+        ${canFillWithDiamonds ? `<button class="craft-btn" style="margin-top:8px; background:var(--diamond); border-bottom-color:var(--diamond-dark);" onclick="craftWithDiamonds('${r.id}')">💎 Mit ${diamondFillCost} Diamanten auffüllen</button>` : ''}
       </div>
-      <button class="craft-btn" ${have?'':'disabled'} onclick="craftItem('${r.id}')">BAUEN</button>
+      <button class="craft-btn" ${(have && state.diamonds>=(r.diamondCost||0))?'':'disabled'} onclick="craftItem('${r.id}')">BAUEN</button>
     `;
     grid.appendChild(card);
   });
@@ -960,23 +1511,256 @@ function craftItem(recipeId){
   const r = RECIPES.find(x=>x.id===recipeId);
   if(!r) return;
   const have = Object.keys(r.needs).every(k => (state.materials[k]||0) >= r.needs[k]);
-  if(!have) return;
+  const diamondsOk = state.diamonds >= (r.diamondCost||0);
+  if(!have || !diamondsOk) return;
   Object.keys(r.needs).forEach(k=>{ state.materials[k] -= r.needs[k]; });
+  if(r.diamondCost) state.diamonds -= r.diamondCost;
   state.craftedCounts[r.id] = (state.craftedCounts[r.id]||0) + 1;
+  playCraftSound();
   saveState();
+  document.getElementById('workshop-diamonds').textContent = state.diamonds;
   renderMaterialBar('workshop-material-bar');
   renderRecipes();
-  renderShowcase();
+  renderPlot();
 }
 
-function renderShowcase(){
-  const strip = document.getElementById('showcase-strip');
-  const built = RECIPES.filter(r => (state.craftedCounts[r.id]||0) > 0);
-  if(built.length === 0){
-    strip.innerHTML = '<span class="empty-note">Noch nichts gebaut – sammle Rohstoffe und leg los!</span>';
+function craftWithDiamonds(recipeId){
+  const r = RECIPES.find(x=>x.id===recipeId);
+  if(!r) return;
+  const missingUnits = Object.keys(r.needs).reduce((sum,k)=> sum + Math.max(0, r.needs[k] - (state.materials[k]||0)), 0);
+  const cost = missingUnits * DIAMOND_PER_MISSING_UNIT + (r.diamondCost||0);
+  if(state.diamonds < cost) return;
+  Object.keys(r.needs).forEach(k=>{ state.materials[k] = Math.max(0, state.materials[k] - r.needs[k]); });
+  state.diamonds -= cost;
+  state.craftedCounts[r.id] = (state.craftedCounts[r.id]||0) + 1;
+  playCraftSound();
+  saveState();
+  document.getElementById('workshop-diamonds').textContent = state.diamonds;
+  renderMaterialBar('workshop-material-bar');
+  renderRecipes();
+  renderPlot();
+}
+
+/* ===================== GRUNDSTÜCK (PLOT) ===================== */
+let plotSelected = null; // itemId (RECIPES-id) oder 'CHAR', oder null
+
+function getPlotSize(){
+  if(state.totalDiamondsEarned >= 700) return 6;
+  if(state.totalDiamondsEarned >= 500) return 5;
+  return 4;
+}
+function plotItemPlacedCount(itemId){
+  return state.plot.placed.filter(p=>p.itemId===itemId).length;
+}
+function plotCellOccupied(x,y){
+  if(state.plot.placed.some(p=>p.x===x && p.y===y)) return true;
+  if(state.plot.charPos && state.plot.charPos.x===x && state.plot.charPos.y===y) return true;
+  return false;
+}
+function ensureCharPos(size){
+  if(!state.plot.charPos || state.plot.charPos.x>=size || state.plot.charPos.y>=size){
+    state.plot.charPos = { x:Math.floor(size/2), y:Math.floor(size/2) };
+  }
+}
+
+function renderTerrainPicker(){
+  const box = document.getElementById('terrain-picker');
+  box.innerHTML = TERRAINS.map(t=>{
+    const unlocked = worldStarSum(t.id) > 0;
+    const active = state.plot.terrain === t.id;
+    return `<button class="toggle-btn ${active?'active':''}" ${unlocked?`onclick="setPlotTerrain('${t.id}')"`:'disabled'}>${t.emoji} ${t.name}${unlocked?'':' 🔒'}</button>`;
+  }).join('');
+}
+function setPlotTerrain(id){
+  state.plot.terrain = id;
+  saveState();
+  renderTerrainPicker();
+  renderPlot();
+}
+
+function renderPlot(){
+  const size = getPlotSize();
+  ensureCharPos(size);
+  // Innerhalb der Grenzen halten, falls die Größe sich (theoretisch) ändert
+  state.plot.placed = state.plot.placed.filter(p => p.x < size && p.y < size);
+
+  const terrain = TERRAINS.find(t=>t.id===state.plot.terrain) || TERRAINS[0];
+  const grid = document.getElementById('plot-grid');
+  grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+  grid.innerHTML = '';
+
+  for(let y=0; y<size; y++){
+    for(let x=0; x<size; x++){
+      const cell = document.createElement('div');
+      cell.className = 'plot-cell';
+      cell.style.background = terrain.colors[(x+y)%2];
+      cell.dataset.x = x; cell.dataset.y = y;
+
+      const placed = state.plot.placed.find(p=>p.x===x && p.y===y);
+      const isChar = state.plot.charPos.x===x && state.plot.charPos.y===y;
+      if(placed){
+        const r = RECIPES.find(r=>r.id===placed.itemId);
+        cell.textContent = r ? r.emoji : '❓';
+      } else if(isChar){
+        const charSize = size<=4 ? 32 : (size===5 ? 27 : 23);
+        cell.innerHTML = `<div style="--pc-size:${charSize}px; pointer-events:none;">${avatarHTML()}</div>`;
+      }
+      cell.onclick = ()=> onPlotCellTap(x,y);
+      cell.ondragover = (e)=>{ e.preventDefault(); cell.classList.add('drop-hover'); };
+      cell.ondragleave = ()=> cell.classList.remove('drop-hover');
+      cell.ondrop = (e)=>{ e.preventDefault(); cell.classList.remove('drop-hover'); handlePlotDrop(e.dataTransfer.getData('text/plain'), x, y); };
+      grid.appendChild(cell);
+    }
+  }
+  renderPlotInventory();
+  renderTerrainPicker();
+}
+
+function onPlotCellTap(x,y){
+  if(plotSelected){
+    handlePlotDrop(plotSelected, x, y);
     return;
   }
-  strip.innerHTML = built.map(r => `<div class="showcase-item">${r.emoji}</div>`).join('');
+  // Nichts ausgewählt: aufheben, was hier steht
+  const placedIdx = state.plot.placed.findIndex(p=>p.x===x && p.y===y);
+  if(placedIdx !== -1){
+    plotSelected = state.plot.placed[placedIdx].itemId;
+    state.plot.placed.splice(placedIdx,1);
+    saveState();
+    renderPlot();
+  } else if(state.plot.charPos.x===x && state.plot.charPos.y===y){
+    plotSelected = 'CHAR';
+    renderPlot();
+  }
+}
+
+function handlePlotDrop(itemId, x, y){
+  if(!itemId) return;
+  if(plotCellOccupied(x,y)) return; // Feld belegt - Ablegen ignorieren
+  if(itemId === 'CHAR'){
+    state.plot.charPos = { x, y };
+  } else {
+    const total = state.craftedCounts[itemId] || 0;
+    const already = plotItemPlacedCount(itemId);
+    if(already >= total) return;
+    state.plot.placed.push({ itemId, x, y });
+  }
+  plotSelected = null;
+  saveState();
+  renderPlot();
+}
+
+function renderPlotInventory(){
+  const box = document.getElementById('plot-inventory');
+  const charChip = `
+    <div class="plot-item-chip ${plotSelected==='CHAR'?'selected':''}" draggable="true"
+      onclick="selectPlotItem('CHAR')"
+      ondragstart="event.dataTransfer.setData('text/plain','CHAR')"
+      ontouchstart="startPlotTouchDrag(event,'CHAR','🧑')">
+      <div style="--pc-size:22px; pointer-events:none;">${avatarHTML()}</div>
+      <span class="pic-count">Du</span>
+    </div>`;
+  const built = RECIPES.filter(r => (state.craftedCounts[r.id]||0) > 0 && r.placeable !== false);
+  const itemChips = built.map(r=>{
+    const total = state.craftedCounts[r.id] || 0;
+    const already = plotItemPlacedCount(r.id);
+    const remaining = total - already;
+    const selected = plotSelected === r.id;
+    return `
+      <div class="plot-item-chip ${selected?'selected':''} ${remaining<=0?'empty':''}" ${remaining>0?'draggable="true"':''}
+        onclick="selectPlotItem('${r.id}')"
+        ondragstart="event.dataTransfer.setData('text/plain','${r.id}')"
+        ontouchstart="startPlotTouchDrag(event,'${r.id}','${r.emoji}')">
+        <span style="font-size:22px;">${r.emoji}</span>
+        <span class="pic-count">${remaining}/${total}</span>
+      </div>`;
+  }).join('');
+  box.innerHTML = charChip + (itemChips || '<span class="empty-note">Noch nichts gebaut – sammle Rohstoffe und leg los!</span>');
+}
+
+function selectPlotItem(itemId){
+  if(itemId !== 'CHAR'){
+    const total = state.craftedCounts[itemId] || 0;
+    const already = plotItemPlacedCount(itemId);
+    if(already >= total) return;
+  }
+  plotSelected = (plotSelected === itemId) ? null : itemId;
+  renderPlotInventory();
+}
+
+/* ---- Touch-Ziehen (echtes Ziehen mit dem Finger) ---- */
+let plotGhostEl = null;
+function startPlotTouchDrag(e, itemId, emoji){
+  if(itemId !== 'CHAR'){
+    const total = state.craftedCounts[itemId] || 0;
+    const already = plotItemPlacedCount(itemId);
+    if(already >= total) return;
+  }
+  e.preventDefault();
+  plotGhostEl = document.createElement('div');
+  plotGhostEl.className = 'plot-ghost';
+  if(itemId === 'CHAR'){
+    plotGhostEl.innerHTML = `<div style="--pc-size:26px;">${avatarHTML()}</div>`;
+  } else {
+    plotGhostEl.textContent = emoji;
+  }
+  document.body.appendChild(plotGhostEl);
+  moveGhost(e.touches[0]);
+
+  const onMove = (ev)=>{
+    ev.preventDefault();
+    moveGhost(ev.touches[0]);
+    document.querySelectorAll('.plot-cell.drop-hover').forEach(c=>c.classList.remove('drop-hover'));
+    const target = document.elementFromPoint(ev.touches[0].clientX, ev.touches[0].clientY);
+    const cell = target ? target.closest('.plot-cell') : null;
+    if(cell) cell.classList.add('drop-hover');
+  };
+  const onEnd = (ev)=>{
+    document.removeEventListener('touchmove', onMove);
+    document.removeEventListener('touchend', onEnd);
+    if(plotGhostEl){ plotGhostEl.remove(); plotGhostEl = null; }
+    document.querySelectorAll('.plot-cell.drop-hover').forEach(c=>c.classList.remove('drop-hover'));
+    const touch = ev.changedTouches[0];
+    const target = document.elementFromPoint(touch.clientX, touch.clientY);
+    const cell = target ? target.closest('.plot-cell') : null;
+    if(cell){
+      handlePlotDrop(itemId, parseInt(cell.dataset.x), parseInt(cell.dataset.y));
+    }
+  };
+  document.addEventListener('touchmove', onMove, {passive:false});
+  document.addEventListener('touchend', onEnd);
+}
+function moveGhost(touch){
+  if(!plotGhostEl || !touch) return;
+  plotGhostEl.style.left = touch.clientX + 'px';
+  plotGhostEl.style.top = touch.clientY + 'px';
+}
+
+function downloadPlot(){
+  if(typeof html2canvas === 'undefined'){
+    alert('Der Download braucht einmalig eine Internetverbindung. Bitte versuch es erneut, sobald du online bist.');
+    return;
+  }
+  const card = document.getElementById('plot-grid').closest('.card');
+  const nameInput = document.getElementById('plot-name-input');
+  const nameDisplay = document.createElement('div');
+  nameDisplay.className = 'plot-name-input';
+  nameDisplay.textContent = state.plot.name || 'Mein Grundstück';
+  nameInput.style.display = 'none';
+  nameInput.insertAdjacentElement('afterend', nameDisplay);
+
+  html2canvas(card, { backgroundColor:'#FFF8E7', scale:2, useCORS:true }).then(canvas=>{
+    nameDisplay.remove();
+    nameInput.style.display = '';
+    const link = document.createElement('a');
+    link.download = `Grundstueck-${state.name}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }).catch(()=>{
+    nameDisplay.remove();
+    nameInput.style.display = '';
+    alert('Der Download hat leider nicht geklappt. Bitte versuch es nochmal.');
+  });
 }
 
 function totalStars(){
@@ -1075,6 +1859,147 @@ function speak(text){
   }catch(e){ /* Speech API nicht verfügbar - stumm ignorieren */ }
 }
 
+/* ===================== READ-ALOUD (Mikrofon-Vorlesen) ===================== */
+const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+let currentRecognition = null;
+
+function normalizeWord(w){
+  return w.toLowerCase().replace(/[.,!?;:„"“”'’()]/g, '').trim();
+}
+function levenshtein(a, b){
+  const m = a.length, n = b.length;
+  if(m === 0) return n;
+  if(n === 0) return m;
+  const d = Array.from({length:m+1}, ()=>new Array(n+1).fill(0));
+  for(let i=0;i<=m;i++) d[i][0]=i;
+  for(let j=0;j<=n;j++) d[0][j]=j;
+  for(let i=1;i<=m;i++){
+    for(let j=1;j<=n;j++){
+      const cost = a[i-1]===b[j-1] ? 0 : 1;
+      d[i][j] = Math.min(d[i-1][j]+1, d[i][j-1]+1, d[i-1][j-1]+cost);
+    }
+  }
+  return d[m][n];
+}
+function wordsRoughlyMatch(target, spoken){
+  if(target === spoken) return true;
+  if(target.length <= 3) return false; // kurze Wörter: nur exakte Treffer zählen
+  return levenshtein(target, spoken) <= 1;
+}
+
+function setupReadAloud(rowId, resultId, targetText){
+  const row = document.getElementById(rowId);
+  const resultBox = document.getElementById(resultId);
+  row.innerHTML = '';
+  resultBox.innerHTML = '';
+
+  if(!SpeechRecognitionAPI){
+    row.innerHTML = `<span class="readaloud-unsupported">🎤 Laut-Vorlesen-Prüfung braucht Chrome auf Android.</span>`;
+    return;
+  }
+
+  const micBtn = document.createElement('button');
+  micBtn.className = 'mic-btn';
+  micBtn.textContent = '🎤';
+  micBtn.title = 'Laut vorlesen';
+  const status = document.createElement('span');
+  status.className = 'readaloud-status';
+  status.textContent = 'Tippe aufs Mikrofon und lies laut vor!';
+  row.appendChild(micBtn);
+  row.appendChild(status);
+
+  micBtn.onclick = ()=>{
+    if(currentRecognition){ currentRecognition.abort(); currentRecognition = null; return; }
+    startReadAloud(targetText, micBtn, status, resultBox);
+  };
+}
+
+function startReadAloud(targetText, micBtn, status, resultBox){
+  const recognition = new SpeechRecognitionAPI();
+  currentRecognition = recognition;
+  recognition.lang = 'de-DE';
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  micBtn.classList.add('listening');
+  micBtn.textContent = '🔴';
+  status.textContent = 'Ich höre zu ...';
+  resultBox.innerHTML = '';
+
+  recognition.onresult = (event)=>{
+    const transcript = event.results[0][0].transcript;
+    showReadAloudResult(targetText, transcript, resultBox);
+  };
+  recognition.onerror = (event)=>{
+    if(event.error === 'not-allowed' || event.error === 'permission-denied'){
+      status.textContent = 'Mikrofon-Zugriff wurde nicht erlaubt.';
+    } else if(event.error === 'no-speech'){
+      status.textContent = 'Ich habe nichts gehört – versuch es nochmal!';
+    } else {
+      status.textContent = 'Das hat leider nicht geklappt – versuch es nochmal!';
+    }
+  };
+  recognition.onend = ()=>{
+    micBtn.classList.remove('listening');
+    micBtn.textContent = '🎤';
+    if(status.textContent === 'Ich höre zu ...') status.textContent = 'Tippe aufs Mikrofon und lies laut vor!';
+    currentRecognition = null;
+  };
+  try{
+    recognition.start();
+  }catch(e){
+    status.textContent = 'Das Mikrofon konnte nicht gestartet werden.';
+  }
+}
+
+function showReadAloudResult(targetText, transcript, resultBox){
+  const targetWords = targetText.split(/\s+/).filter(Boolean);
+  const spokenWords = transcript.split(/\s+/).filter(Boolean).map(normalizeWord);
+  const usedSpoken = new Array(spokenWords.length).fill(false);
+  const missedWords = [];
+
+  const wordSpans = targetWords.map(rawWord=>{
+    const norm = normalizeWord(rawWord);
+    let found = false;
+    for(let i=0;i<spokenWords.length;i++){
+      if(!usedSpoken[i] && wordsRoughlyMatch(norm, spokenWords[i])){
+        usedSpoken[i] = true;
+        found = true;
+        break;
+      }
+    }
+    if(!found && norm.length > 2) missedWords.push(norm);
+    return `<span class="word-check ${found ? 'correct' : 'miss'}">${escapeHtml(rawWord)}</span>`;
+  }).join(' ');
+
+  const total = targetWords.filter(w=>normalizeWord(w).length>0).length;
+  const correctCount = total - missedWords.length;
+  let summary;
+  if(missedWords.length === 0){
+    summary = `Klasse gelesen! Alle Wörter erkannt! 🎉`;
+  } else if(correctCount >= total * 0.7){
+    summary = `Schon richtig gut! Diese Wörter üben wir noch: ${missedWords.slice(0,5).join(', ')}`;
+  } else {
+    summary = `Guter Versuch! Lies den Text gern nochmal langsam vor.`;
+  }
+
+  resultBox.innerHTML = `
+    <div class="readaloud-result">
+      <div>${wordSpans}</div>
+      <div class="readaloud-summary">${escapeHtml(summary)}</div>
+    </div>
+  `;
+
+  if(missedWords.length > 0){
+    missedWords.forEach(w=>{
+      state.stats.wordMistakes[w] = (state.stats.wordMistakes[w]||0) + 1;
+    });
+    saveState();
+  } else {
+    playCorrectSound();
+  }
+}
+
 /* ===================== TASK RENDERING ===================== */
 function renderTask(){
   const total = currentTaskList.length;
@@ -1167,9 +2092,9 @@ function renderOrderTask(card, task){
     </div>
   `;
   const list = document.getElementById('order-list');
-  shuffled.forEach(s=>{
+  shuffled.forEach((s, i)=>{
     const item = document.createElement('div');
-    item.className = 'order-item';
+    item.className = `order-item oc-${i % 5}`;
     item.draggable = true;
     item.dataset.text = s;
     item.innerHTML = `<span class="handle">↕️</span><span>${maybeSyllablize(s)}</span> <button class="speak-btn" style="margin-left:auto; width:40px; height:40px; font-size:16px;" onclick="event.stopPropagation(); speak('${escapeJs(applyName(s))}')">🔊</button>`;
@@ -1249,9 +2174,12 @@ function renderReadTask(card, task){
       <button class="speak-btn" onclick="speak('${escapeJs(resolvedText)}')">🔊</button>
       <p class="read-text" style="margin:0;">${maybeSyllablize(task.text)}</p>
     </div>
+    <div class="readaloud-row" id="readaloud-row"></div>
+    <div id="readaloud-result"></div>
     <p class="read-text" style="font-size:calc(1.15rem*var(--text-scale)); font-weight:700;">${maybeSyllablize(task.question)}</p>
     <div class="choice-grid" id="choice-grid"></div>
   `;
+  setupReadAloud('readaloud-row', 'readaloud-result', resolvedText);
   const grid = document.getElementById('choice-grid');
   shuffle([...task.options]).forEach(opt=>{
     const btn = document.createElement('button');
@@ -1358,9 +2286,14 @@ function onCorrect(sourceEl){
   const isBonusStage = currentStageIndex === 3;
   const gain = isBonusStage ? 2 : 1;
   state.diamonds += gain;
+  state.totalDiamondsEarned += gain;
+  checkMilestones();
   const matKey = MATERIAL_BY_WORLD[currentWorld];
   state.materials[matKey] = (state.materials[matKey]||0) + gain;
   state.stats.totalCorrect++;
+  bumpDailyLog('correct', 1);
+  bumpDailyLog('diamonds', gain);
+  playCorrectSound();
   saveState();
   document.getElementById('task-diamonds').textContent = state.diamonds;
   flyDiamond(sourceEl);
@@ -1375,6 +2308,7 @@ function onWrong(resetFn, task){
     currentWorldMissed.push(task);
   }
   state.stats.totalWrong++;
+  bumpDailyLog('wrong', 1);
   if(task && task.type === 'gap' && task.answer){
     state.stats.wordMistakes[task.answer] = (state.stats.wordMistakes[task.answer]||0) + 1;
   }
@@ -1464,6 +2398,7 @@ function setTextScale(v){
 function applyTextScale(){
   document.documentElement.style.setProperty('--text-scale', state.textScale);
   applyFontChoice();
+  applyTheme();
 }
 function applyFontChoice(){
   document.documentElement.style.setProperty('--font-read', state.dyslexicFont ? 'var(--font-read-alt)' : "'Atkinson Hyperlegible', sans-serif");
@@ -1474,6 +2409,178 @@ function toggleDyslexicFont(){
   applyFontChoice();
   updateSettingsUI();
 }
+function applyTheme(){
+  document.body.classList.remove('theme-nacht', 'theme-ozean');
+  if(state.theme === 'nacht') document.body.classList.add('theme-nacht');
+  if(state.theme === 'ozean') document.body.classList.add('theme-ozean');
+}
+function openThemePicker(){
+  const list = document.getElementById('theme-list');
+  list.innerHTML = THEMES.map(t=>{
+    const unlocked = state.totalDiamondsEarned >= t.unlockAt;
+    const selected = state.theme === t.id;
+    return `
+      <div class="theme-swatch ${selected?'selected':''} ${unlocked?'':'locked'}" ${unlocked ? `onclick="selectTheme('${t.id}')"` : ''}>
+        <div class="theme-preview" style="background:${t.previewGradient};"></div>
+        <div style="flex:1;">
+          <div style="font-weight:700;">${t.emoji} ${escapeHtml(t.name)}</div>
+          <div style="font-size:.85rem; color:${unlocked ? '#2C4A17' : '#888'};">${unlocked ? (selected ? 'Ausgewählt ✅' : 'Antippen zum Auswählen') : `🔒 Ab ${t.unlockAt} 💎`}</div>
+        </div>
+      </div>`;
+  }).join('');
+  document.getElementById('screen-theme').classList.remove('hidden');
+  document.getElementById('screen-theme').style.display = 'flex';
+}
+function selectTheme(id){
+  const t = THEMES.find(x=>x.id===id);
+  if(!t || state.totalDiamondsEarned < t.unlockAt) return;
+  state.theme = id;
+  saveState();
+  applyTheme();
+  openThemePicker(); // neu rendern, damit "Ausgewählt" aktualisiert wird
+}
+function closeThemePicker(){
+  document.getElementById('screen-theme').classList.add('hidden');
+}
+
+/* ===================== ACHIEVEMENTS ===================== */
+const ACHIEVEMENTS = [
+  { id:'first', title:'Erster Erfolg', emoji:'🥉', desc:'Schließe deine erste Stufe ab.', check:()=> totalStars() >= 1 },
+  { id:'traveler', title:'Weltenbummler', emoji:'🗺️', desc:'Schalte alle 5 Welten frei.', check:()=> totalStars() >= (WORLDS.find(w=>w.id==='wueste')?.unlockAt || 12) },
+  { id:'master', title:'Meisterschüler', emoji:'👑', desc:'Bestehe eine Meisterprüfung.', check:()=> WORLDS.some(w => (state.stageStars[w.id]||[])[3] >= 1) },
+  { id:'streak', title:'Serientäter', emoji:'🔥', desc:'5 Tage in Folge gespielt.', check:()=> (state.streak||0) >= 5 },
+  { id:'reader', title:'Fleißiger Leser', emoji:'📖', desc:'100 Aufgaben richtig gelöst.', check:()=> (state.stats.totalCorrect||0) >= 100 },
+  { id:'builder', title:'Baumeister', emoji:'🏗️', desc:'10 Dinge auf dem Grundstück platziert.', check:()=> (state.plot.placed||[]).length >= 10 },
+  { id:'hunter', title:'Diamantenjäger', emoji:'💎', desc:'300 Diamanten insgesamt gesammelt.', check:()=> (state.totalDiamondsEarned||0) >= 300 },
+  { id:'fashion', title:'Modebewusst', emoji:'👕', desc:'In mind. 3 Kategorien etwas Neues angezogen.', check:()=> Object.values(state.ownedClothing||{}).filter(arr=>arr.length>1).length >= 3 },
+  { id:'nearperfect', title:'Fast Perfekt', emoji:'🏆', desc:'80 von 100 möglichen Sternen erreicht.', check:()=> totalStars() >= 80 },
+  { id:'artist', title:'Künstler', emoji:'🎨', desc:'Ein anderes Farbthema als Standard gewählt.', check:()=> state.theme !== 'standard' },
+];
+
+function openAchievements(){
+  const unlocked = ACHIEVEMENTS.filter(a => a.check());
+  document.getElementById('achievements-count').textContent = `${unlocked.length} von ${ACHIEVEMENTS.length} freigeschaltet`;
+  document.getElementById('achievements-list').innerHTML = ACHIEVEMENTS.map(a=>{
+    const isUnlocked = a.check();
+    return `
+      <div class="milestone-row ${isUnlocked?'unlocked':''}">
+        <span class="m-emoji" style="${isUnlocked?'':'filter:grayscale(1); opacity:.5;'}">${a.emoji}</span>
+        <div>
+          <div style="font-weight:700;">${escapeHtml(a.title)}</div>
+          <div style="font-size:.9rem; color:${isUnlocked?'#2C4A17':'#888'};">${isUnlocked?'Geschafft ✅':escapeHtml(a.desc)}</div>
+        </div>
+      </div>`;
+  }).join('');
+  document.getElementById('screen-achievements').classList.remove('hidden');
+  document.getElementById('screen-achievements').style.display = 'flex';
+}
+function closeAchievements(){
+  document.getElementById('screen-achievements').classList.add('hidden');
+}
+
+/* ===================== CHARACTER / CLOTHING ===================== */
+function getClothingItem(slot, id){
+  return CLOTHING[slot].find(x=>x.id===id) || CLOTHING[slot][0];
+}
+function faceGridHTML(hairColor, eyeColor){
+  const colorFor = { H:hairColor, S:SKIN_TONE, W:'#FFFFFF', E:eyeColor, M:MOUTH_COLOR };
+  const cells = FACE_GRID.flatMap(row => row.split('')).map(ch =>
+    `<div class="pc-face-cell" style="background:${colorFor[ch]};"></div>`
+  ).join('');
+  return `<div class="pc-face-grid">${cells}</div>`;
+}
+function avatarHTML(){
+  const headItem = getClothingItem('headDesign', state.avatar.headDesign);
+  const shirtItem = getClothingItem('shirt', state.avatar.shirt);
+  const pantsItem = getClothingItem('pants', state.avatar.pants);
+  const printItem = getClothingItem('print', state.avatar.print);
+  const sleeveStyle = `background:linear-gradient(to bottom, ${shirtItem.color} 0%, ${shirtItem.color} 38%, ${SKIN_TONE} 38%, ${SKIN_TONE} 100%);`;
+  return `
+    <div class="pixel-char">
+      <div class="pc-part pc-arm left" style="${sleeveStyle}"></div>
+      <div class="pc-part pc-arm right" style="${sleeveStyle}"></div>
+      <div class="pc-part pc-body" style="background:${shirtItem.color};">${printItem.emoji ? `<span class="pc-print">${printItem.emoji}</span>` : ''}</div>
+      <div class="pc-part pc-leg left" style="background:${pantsItem.color};"></div>
+      <div class="pc-part pc-leg right" style="background:${pantsItem.color};"></div>
+      <div class="pc-part pc-head">${faceGridHTML(headItem.hair, headItem.eye)}</div>
+    </div>
+  `;
+}
+function renderHubAvatar(){
+  const el = document.getElementById('hub-avatar-render');
+  if(el) el.innerHTML = avatarHTML();
+}
+function openCharacterScreen(){
+  document.getElementById('character-diamonds').textContent = state.diamonds;
+  document.getElementById('character-render').innerHTML = avatarHTML();
+  renderClothingShop();
+  document.getElementById('screen-character').classList.remove('hidden');
+  document.getElementById('screen-character').style.display = 'flex';
+}
+function closeCharacterScreen(){
+  document.getElementById('screen-character').classList.add('hidden');
+  renderHubAvatar();
+}
+const SLOT_LABELS = { headDesign:'Kopf', shirt:'Shirt', pants:'Hose', print:'Aufdruck' };
+function renderClothingShop(){
+  const box = document.getElementById('clothing-shop');
+  box.innerHTML = Object.keys(CLOTHING).map(slot=>{
+    const items = CLOTHING[slot].map(item=>{
+      const owned = state.ownedClothing[slot].includes(item.id);
+      const craftLocked = item.unlockedByCraft && !(state.craftedCounts[item.unlockedByCraft] > 0);
+      const milestoneLocked = item.unlockedByMilestone && state.totalDiamondsEarned < item.unlockedByMilestone;
+      const locked = craftLocked || milestoneLocked;
+      const equipped = state.avatar[slot] === item.id;
+      const swatch = item.color ? `background:${item.color};` : 'background:#eee;';
+      let costLabel;
+      if(locked){
+        costLabel = craftLocked ? `🔒 Werkstatt` : `🔒 Ab ${item.unlockedByMilestone} 💎`;
+      } else if(owned){
+        costLabel = equipped ? 'Angezogen ✅' : 'Anziehen';
+      } else {
+        costLabel = `${item.cost} 💎`;
+      }
+      let iconHTML;
+      if(slot === 'headDesign'){
+        iconHTML = `<span class="cc-headmini">${faceGridHTML(item.hair, item.eye)}</span>`;
+      } else if(item.emoji !== undefined){
+        iconHTML = `<span class="cc-emoji">${item.emoji || '🚫'}</span>`;
+      } else {
+        iconHTML = `<span class="cc-swatch" style="${swatch}"></span>`;
+      }
+      return `
+        <div class="clothing-chip ${equipped?'equipped':''} ${locked?'locked':''}" ${locked?'':`onclick="buyOrEquipClothing('${slot}','${item.id}')"`}>
+          ${iconHTML}
+          <span class="cc-name">${escapeHtml(item.name)}</span>
+          <span class="cc-cost">${costLabel}</span>
+        </div>`;
+    }).join('');
+    return `
+      <div class="clothing-section">
+        <h4>${SLOT_LABELS[slot]}</h4>
+        <div class="clothing-grid">${items}</div>
+      </div>`;
+  }).join('');
+}
+function buyOrEquipClothing(slot, itemId){
+  const item = getClothingItem(slot, itemId);
+  if(item.unlockedByCraft && !(state.craftedCounts[item.unlockedByCraft] > 0)) return;
+  if(item.unlockedByMilestone && state.totalDiamondsEarned < item.unlockedByMilestone) return;
+  const owned = state.ownedClothing[slot].includes(itemId) || item.unlockedByCraft || item.unlockedByMilestone;
+  if(!owned){
+    if(item.cost > 0){
+      if(state.diamonds < item.cost) return;
+      state.diamonds -= item.cost;
+    }
+    state.ownedClothing[slot].push(itemId);
+  }
+  state.avatar[slot] = itemId;
+  saveState();
+  document.getElementById('character-diamonds').textContent = state.diamonds;
+  document.getElementById('character-render').innerHTML = avatarHTML();
+  renderClothingShop();
+}
+
 function setSpeechRate(v){
   state.speechRate = v;
   saveState();
@@ -1488,18 +2595,81 @@ function updateSettingsUI(){
   if(state.speechRate===0.75) document.getElementById('rate-1').classList.add('active');
   if(state.speechRate===1) document.getElementById('rate-2').classList.add('active');
   document.getElementById('syllable-toggle').classList.toggle('active', state.showSyllables);
+  document.getElementById('sound-toggle').classList.toggle('active', state.soundEnabled);
   document.getElementById('font-toggle').classList.toggle('active', state.dyslexicFont);
+  const themeBtn = document.getElementById('theme-btn');
+  const themeUnlocked = state.totalDiamondsEarned >= 75;
+  themeBtn.textContent = themeUnlocked ? '🎨 Auswählen' : '🔒 Ab 75 💎';
+  themeBtn.disabled = !themeUnlocked;
+  const certBtn = document.getElementById('certificate-btn');
+  const certUnlocked = state.totalDiamondsEarned >= 150;
+  certBtn.textContent = certUnlocked ? '📜 Ansehen' : '🔒 Ab 150 💎';
+  certBtn.disabled = !certUnlocked;
 }
 function toggleSyllables(){
   state.showSyllables = !state.showSyllables;
   saveState();
   updateSettingsUI();
 }
+function toggleSound(){
+  state.soundEnabled = !state.soundEnabled;
+  saveState();
+  updateSettingsUI();
+  if(state.soundEnabled) playCorrectSound();
+}
+
+/* ===================== CERTIFICATE ===================== */
+function openCertificate(){
+  if(state.totalDiamondsEarned < 150) return;
+  document.getElementById('cert-avatar').innerHTML = avatarHTML();
+  document.getElementById('cert-name').textContent = state.name;
+  const stars = totalStars();
+  document.getElementById('cert-stats').textContent = `${stars} Sterne gesammelt · ${state.totalDiamondsEarned} Diamanten geschürft`;
+  const d = new Date();
+  document.getElementById('cert-date').textContent = d.toLocaleDateString('de-DE', { year:'numeric', month:'long', day:'numeric' });
+  document.getElementById('screen-certificate').classList.remove('hidden');
+  document.getElementById('screen-certificate').style.display = 'flex';
+}
+function closeCertificate(){
+  document.getElementById('screen-certificate').classList.add('hidden');
+}
+function downloadCertificate(){
+  if(typeof html2canvas === 'undefined'){
+    alert('Der Download braucht eine Internetverbindung (einmalig, zum Laden der Download-Funktion). Bitte versuch es erneut, sobald du online bist.');
+    return;
+  }
+  const actions = document.getElementById('cert-actions');
+  const card = document.getElementById('certificate-card');
+  actions.style.visibility = 'hidden'; // Buttons nicht mit aufs Bild
+  html2canvas(card, { backgroundColor:'#FFF9EA', scale:2, useCORS:true }).then(canvas=>{
+    actions.style.visibility = 'visible';
+    const link = document.createElement('a');
+    link.download = `Urkunde-${state.name}.png`;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  }).catch(()=>{
+    actions.style.visibility = 'visible';
+    alert('Der Download hat leider nicht geklappt. Bitte versuch es nochmal.');
+  });
+}
 
 /* ===================== DAILY BONUS ===================== */
 function todayStr(){
   const d = new Date();
   return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+}
+function bumpDailyLog(field, amount){
+  const day = todayStr();
+  if(!state.dailyLog[day]) state.dailyLog[day] = { correct:0, wrong:0, diamonds:0 };
+  state.dailyLog[day][field] = (state.dailyLog[day][field]||0) + amount;
+}
+function pruneDailyLog(){
+  // Nur die letzten 30 Tage behalten, damit der Spielstand nicht unbegrenzt wächst.
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - 30);
+  Object.keys(state.dailyLog).forEach(key=>{
+    if(new Date(key + 'T00:00:00') < cutoff) delete state.dailyLog[key];
+  });
 }
 function checkDailyBonus(){
   const today = todayStr();
@@ -1515,6 +2685,8 @@ function checkDailyBonus(){
   state.lastLoginDate = today;
   const bonus = 2 + Math.min(newStreak, 5);
   state.diamonds += bonus;
+  state.totalDiamondsEarned += bonus;
+  checkMilestones();
   state.pendingBonus = { diamonds: bonus, streak: newStreak };
   saveState();
 }
@@ -1534,6 +2706,19 @@ function closeDailyBonus(){
 }
 
 /* ===================== PARENT VIEW ===================== */
+function getWeekSums(offsetWeeks){
+  const sum = { correct:0, wrong:0, diamonds:0 };
+  const today = new Date();
+  for(let i=0; i<7; i++){
+    const d = new Date(today);
+    d.setDate(d.getDate() - i - offsetWeeks*7);
+    const key = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+    const entry = state.dailyLog[key];
+    if(entry){ sum.correct += entry.correct||0; sum.wrong += entry.wrong||0; sum.diamonds += entry.diamonds||0; }
+  }
+  return sum;
+}
+
 function openParentView(){
   const content = document.getElementById('parentview-content');
   const s = state.stats;
@@ -1550,8 +2735,40 @@ function openParentView(){
     ? mistakeEntries.map(([word,count])=>`<div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid #eee;"><span>${escapeHtml(word)}</span><span>${count}× falsch</span></div>`).join('')
     : `<p style="color:#888;">Noch keine Daten – je mehr ${escapeHtml(state.name)} spielt, desto mehr siehst du hier.</p>`;
 
+  const thisWeek = getWeekSums(0);
+  const lastWeek = getWeekSums(1);
+  const maxVal = Math.max(thisWeek.correct, lastWeek.correct, 1);
+  const thisPct = Math.round((thisWeek.correct/maxVal)*100);
+  const lastPct = Math.round((lastWeek.correct/maxVal)*100);
+  let weekCompareLine;
+  if(lastWeek.correct === 0 && thisWeek.correct === 0){
+    weekCompareLine = 'Noch keine Daten für einen Vergleich.';
+  } else if(lastWeek.correct === 0){
+    weekCompareLine = `Diese Woche schon ${thisWeek.correct} richtige Antworten – letzte Woche war noch keine Aktivität erfasst.`;
+  } else {
+    const diff = thisWeek.correct - lastWeek.correct;
+    const pctDiff = Math.round((diff/lastWeek.correct)*100);
+    weekCompareLine = diff >= 0
+      ? `${pctDiff}% mehr richtige Antworten als letzte Woche. 🎉`
+      : `${Math.abs(pctDiff)}% weniger als letzte Woche – kein Problem, jede Woche ist anders.`;
+  }
+
   content.innerHTML = `
     <p><strong>Richtig beantwortet:</strong> ${s.totalCorrect} · <strong>Falsch:</strong> ${s.totalWrong} (${accuracy}% Trefferquote)</p>
+    <h3 style="font-size:15px; margin:16px 0 6px;">📅 Wochenrückblick (richtige Antworten)</h3>
+    <div style="display:flex; align-items:flex-end; gap:24px; height:90px; padding:0 20px; margin-bottom:6px;">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;">
+        <div style="width:36px; height:${Math.max(4,lastPct)}%; background:#B8BEC7; border-radius:4px 4px 0 0;"></div>
+        <span style="font-size:.75rem; color:#888;">Letzte Woche</span>
+        <span style="font-size:.8rem; font-weight:700;">${lastWeek.correct}</span>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:4px; flex:1;">
+        <div style="width:36px; height:${Math.max(4,thisPct)}%; background:var(--gold); border-radius:4px 4px 0 0;"></div>
+        <span style="font-size:.75rem; color:#888;">Diese Woche</span>
+        <span style="font-size:.8rem; font-weight:700;">${thisWeek.correct}</span>
+      </div>
+    </div>
+    <p style="font-size:.9rem; text-align:center; margin-bottom:10px;">${weekCompareLine}</p>
     <h3 style="font-size:15px; margin:16px 0 6px;">Sterne pro Welt</h3>
     ${worldRows}
     <h3 style="font-size:15px; margin:16px 0 6px;">Wörter, die öfter schwerfallen</h3>
