@@ -204,9 +204,33 @@
 
   /* ---------- Diamond vault ---------- */
   .vault-card{
-    background:white; border:3px solid var(--diamond-dark); border-radius:12px;
-    padding:12px 14px; margin-bottom:16px; cursor:pointer; max-width:640px; width:100%;
+    background:linear-gradient(135deg,#D8D8D8 0%,#B4B4B4 45%,#909090 100%);
+    border:3px solid #5A5A5A; border-radius:12px;
+    padding:12px 14px 12px 16px; margin-bottom:16px; cursor:pointer; max-width:640px; width:100%;
+    position:relative; overflow:hidden;
   }
+  .vault-card::after{
+    content:''; position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    width:30px; height:30px; border-radius:50%;
+    background:radial-gradient(circle at 35% 32%, #F0F0F0, #888 55%, #4a4a4a 100%);
+    border:2px solid #3a3a3a; box-shadow:inset 0 0 4px rgba(0,0,0,.6);
+  }
+  .vault-card::before{
+    content:''; position:absolute; right:22px; top:50%; transform:translateY(-50%) rotate(15deg);
+    width:2px; height:12px; background:#2a2a2a; z-index:1;
+  }
+  .vault-card > *{ position:relative; z-index:2; padding-right:38px; }
+  .vault-title{ color:var(--ink); }
+  body.theme-nacht .vault-title{ color:#EDE7D9; }
+  body.theme-ozean .vault-title{ color:#123A52; }
+
+  .mascot-bubble{
+    background:linear-gradient(135deg,#FFE0B8,#FFC988);
+    border-radius:10px; padding:8px 12px; border:2px solid #D98E3D; color:#5A3A0F;
+    flex:1;
+  }
+  body.theme-nacht .mascot-bubble{ background:linear-gradient(135deg,#4A3418,#2E2210); border-color:#8A5A1E; color:#F0D9A8; }
+  body.theme-ozean .mascot-bubble{ background:linear-gradient(135deg,#FFE8C4,#FFD79E); border-color:#C77A2E; color:#5A3A0F; }
   .milestone-row{
     display:flex; align-items:center; gap:14px; padding:12px; border-radius:10px; margin-bottom:10px;
     background:#F5F0E4;
@@ -218,13 +242,15 @@
   /* ---------- Color themes ---------- */
   body.theme-nacht{ background: linear-gradient(180deg,#16202B 0%, #0F171F 55%, #1B2A18 55%, #101A0D 100%); }
   body.theme-nacht .card,
-  body.theme-nacht .vault-card,
   body.theme-nacht .stage-card,
   body.theme-nacht .recipe-card,
   body.theme-nacht .choice-btn,
   body.theme-nacht .match-item,
   body.theme-nacht .milestone-row{
     background:#2A2F3A; color:#EDE7D9; border-color:#4A4F5A;
+  }
+  body.theme-nacht .vault-card{
+    background:linear-gradient(135deg,#3A3A3A 0%,#242424 45%,#161616 100%); border-color:#111;
   }
   body.theme-nacht .read-text,
   body.theme-nacht .recipe-name,
@@ -238,7 +264,6 @@
 
   body.theme-ozean{ background: linear-gradient(180deg,#AEE4F5 0%, #6FC1E0 45%, #2E7FAE 45%, #205C82 100%); }
   body.theme-ozean .card,
-  body.theme-ozean .vault-card,
   body.theme-ozean .stage-card,
   body.theme-ozean .recipe-card,
   body.theme-ozean .choice-btn,
@@ -308,7 +333,7 @@
     font-size:calc(var(--pc-size,100px)*0.16); line-height:1; pointer-events:none;
   }
 
-  .avatar-card{ background:white; border:3px solid var(--stone); border-radius:12px; padding:14px; margin-bottom:16px; max-width:640px; width:100%; text-align:center; cursor:pointer; }
+  .avatar-card{ background:#F5F0E4; border:3px solid var(--stone); border-radius:12px; padding:14px; margin-bottom:16px; max-width:640px; width:100%; text-align:center; cursor:pointer; }
   .clothing-section{ margin-bottom:18px; }
   .clothing-section h4{ font-size:14px; color:var(--ink); margin-bottom:8px; }
   .clothing-grid{ display:flex; flex-wrap:wrap; gap:10px; }
@@ -485,6 +510,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
+<div id="dev-badge" class="hidden" style="position:fixed; top:6px; right:6px; z-index:9999; background:#C6543F; color:white; font-family:var(--font-pixel); font-size:9px; padding:4px 8px; border-radius:6px; box-shadow:0 2px 0 rgba(0,0,0,.4); pointer-events:none;">🛠️ DEV</div>
 
 <!-- START SCREEN -->
 <div id="screen-start" class="screen">
@@ -501,8 +527,6 @@
   <div id="start-continue" class="hidden" style="margin-top:8px; text-align:center;">
     <div class="subtitle" id="welcome-back-text" style="margin-bottom:16px;"></div>
     <button class="block-btn gold big" onclick="goToHub()">Weiterspielen ▶️</button>
-    <br><br>
-    <button class="block-btn stone" onclick="resetProgress()">Neu anfangen</button>
   </div>
 </div>
 
@@ -522,12 +546,12 @@
   </div>
   <div id="mascot-row" class="hidden" style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
     <span style="font-size:34px;">🐉</span>
-    <span class="read-text" style="font-size:.95rem; background:white; border-radius:10px; padding:8px 12px; border:2px solid var(--stone);" id="mascot-text">Hallo! Ich bin dein Begleiter!</span>
+    <span class="read-text mascot-bubble" style="font-size:.95rem;" id="mascot-text">Hallo! Ich bin dein Begleiter!</span>
   </div>
   <div class="vault-card" id="vault-card" onclick="openVault()">
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-      <span style="font-weight:700; font-size:.9rem; color:var(--ink);">💎 Diamant-Tresor</span>
-      <span style="font-size:.8rem; color:#888;" id="vault-label">0/30</span>
+      <span class="vault-title" style="font-weight:700; font-size:.9rem;">💎 Diamant-Tresor</span>
+      <span class="vault-title" style="font-size:.8rem; opacity:.75;" id="vault-label">0/30</span>
     </div>
     <div class="progress-track"><div class="progress-fill" id="vault-fill" style="width:0%"></div></div>
   </div>
@@ -581,6 +605,7 @@
     <button class="icon-btn" onclick="exitToStageSelect()">⬅️</button>
     <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
     <div class="score-pill">💎 <span id="task-diamonds">0</span></div>
+    <button class="icon-btn hidden" id="dev-skip-btn" onclick="skipTaskDev()" title="Aufgabe überspringen (Dev)">⏭️</button>
   </div>
   <div class="card" id="task-card">
     <!-- filled dynamically -->
@@ -643,8 +668,12 @@
         <button class="block-btn stone" id="certificate-btn" onclick="openCertificate()">📜 Ansehen</button>
       </div>
       <div class="settings-row">
+        <span class="read-text" style="font-size:1.05rem;">Entwicklermodus</span>
+        <button class="toggle-btn" id="devmode-toggle" onclick="toggleDevMode()">🛠️ Ein/Aus</button>
+      </div>
+      <div class="settings-row">
         <span class="read-text" style="font-size:1.05rem;">Fortschritt</span>
-        <button class="block-btn stone" onclick="resetProgress()">Zurücksetzen</button>
+        <button class="block-btn stone" onclick="confirmResetProgress()">Zurücksetzen</button>
       </div>
       <div class="settings-row">
         <span class="read-text" style="font-size:1.05rem;">Für Eltern</span>
@@ -672,6 +701,34 @@
     <div id="vault-milestones"></div>
     <div class="bottom-actions">
       <button class="block-btn gold" onclick="closeVault()">Schließen</button>
+    </div>
+  </div>
+</div>
+
+<!-- DEV PASSWORD -->
+<div id="screen-devpassword" class="screen hidden" style="position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:131; justify-content:center;">
+  <div class="card" style="text-align:center; max-width:340px;">
+    <div style="font-size:38px;">🛠️</div>
+    <h2 style="color:var(--ink); text-shadow:none; font-size:18px;">Entwicklermodus</h2>
+    <p class="read-text" style="font-size:.9rem;">Bitte Passwort eingeben:</p>
+    <input type="password" id="dev-password-input" class="plot-name-input" style="max-width:200px;" inputmode="numeric" onkeydown="if(event.key==='Enter') submitDevPassword();">
+    <p style="color:#C6543F; font-size:.85rem; font-weight:700; min-height:1.2em;" id="dev-password-error"></p>
+    <div class="bottom-actions">
+      <button class="block-btn stone" onclick="closeDevPasswordPrompt()">Abbrechen</button>
+      <button class="block-btn gold" onclick="submitDevPassword()">Bestätigen</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESET CONFIRM -->
+<div id="screen-resetconfirm" class="screen hidden" style="position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:130; justify-content:center;">
+  <div class="card" style="text-align:center; border-color:#C6543F;">
+    <div style="font-size:44px;">⚠️</div>
+    <h2 style="color:var(--ink); text-shadow:none; font-size:18px;">Wirklich alles zurücksetzen?</h2>
+    <p class="read-text" style="font-size:.95rem;">Der komplette Fortschritt, alle Sterne, Diamanten, das Grundstück und der Charakter gehen dabei unwiderruflich verloren. Das lässt sich nicht rückgängig machen!</p>
+    <div class="bottom-actions">
+      <button class="block-btn stone" onclick="closeResetConfirm()">Abbrechen</button>
+      <button class="block-btn" style="background:#C6543F; border-bottom-color:#93392A;" onclick="doResetProgress()">Ja, alles löschen</button>
     </div>
   </div>
 </div>
@@ -1094,9 +1151,8 @@ const MATERIAL_INFO = {
 const RECIPES = [
   { id:'haus', name:'Haus', emoji:'🏠', needs:{ holz:5 } },
   { id:'baum', name:'Baum', emoji:'🌳', needs:{ holz:4 } },
-  { id:'mauer', name:'Mauerstück', emoji:'🧱', needs:{ stein:4 } },
-  { id:'weg', name:'Weg', emoji:'🟫', needs:{ stein:2 } },
-  { id:'zaun', name:'Zaun', emoji:'🪵', needs:{ holz:2 } },
+  { id:'weg', name:'Weg', emoji:'🟫', needs:{ stein:2 }, fullTile:true, tileBackground:'#C9A876' },
+  { id:'zaun', name:'Zaun', emoji:'🚧', needs:{ holz:2 }, fullTile:true, tileBackground:'repeating-linear-gradient(90deg, #A97C4F 0px, #A97C4F 11px, #6B4A2E 11px, #6B4A2E 13px)' },
   { id:'blumenbeet', name:'Blumenbeet', emoji:'🌷', needs:{ holz:1, gold:1 } },
   { id:'kuerbisdeko', name:'Kürbis-Deko', emoji:'🎃', needs:{ schleim:3, gold:1 } },
   { id:'brunnen', name:'Brunnen', emoji:'⛲', needs:{ perle:3, stein:1 } },
@@ -1222,6 +1278,7 @@ let state = {
   pendingMilestones:[],
   theme:'standard',
   soundEnabled:true,
+  devMode:false,
   dailyLog:{},
   avatar:{ headDesign:'a', shirt:'teal', pants:'darkblue', print:'none' },
   ownedClothing:{ headDesign:['a'], shirt:['teal'], pants:['darkblue'], print:['none'] },
@@ -1263,6 +1320,7 @@ window.addEventListener('load', ()=>{
     checkDailyBonus();
   }
   applyTextScale();
+  updateDevBadge();
 });
 
 function migrateOldSave(){
@@ -1316,6 +1374,7 @@ function migrateOldSave(){
   if(state.plot.name === undefined) state.plot.name = '';
   if(state.soundEnabled === undefined) state.soundEnabled = true;
   if(!state.dailyLog) state.dailyLog = {};
+  if(state.devMode === undefined) state.devMode = false;
   pruneDailyLog();
   if(!Array.isArray(state.plot.placed)) state.plot.placed = [];
   // Gegenstände, die es nicht mehr gibt (z.B. altes Schwert/Boot/Truhe/Laterne), vom Grundstück entfernen
@@ -1339,8 +1398,17 @@ function startGame(){
   goToHub();
 }
 
-function resetProgress(){
-  state = { name: state.name || 'Anton', diamonds:0, stageStars:{wald:[0,0,0,0],bergwerk:[0,0,0,0],zombiedorf:[0,0,0,0],ozean:[0,0,0,0],wueste:[0,0,0,0]}, materials:{holz:0,stein:0,schleim:0,perle:0,gold:0}, craftedCounts:{}, textScale:state.textScale, speechRate:state.speechRate, showSyllables:state.showSyllables, dyslexicFont:state.dyslexicFont, lastLoginDate:null, streak:0, stats:{totalCorrect:0,totalWrong:0,wordMistakes:{}}, totalDiamondsEarned:0, milestonesSeen:{}, pendingMilestones:[], theme:'standard', avatar:{headDesign:'a',shirt:'teal',pants:'darkblue',print:'none'}, ownedClothing:{headDesign:['a'],shirt:['teal'],pants:['darkblue'],print:['none']}, plot:{terrain:'wald',placed:[],charPos:null,name:''}, soundEnabled:state.soundEnabled, dailyLog:{} };
+function confirmResetProgress(){
+  document.getElementById('screen-resetconfirm').classList.remove('hidden');
+  document.getElementById('screen-resetconfirm').style.display = 'flex';
+}
+function closeResetConfirm(){
+  document.getElementById('screen-resetconfirm').classList.add('hidden');
+}
+function doResetProgress(){
+  closeResetConfirm();
+  closeSettings();
+  state = { name: state.name || 'Anton', diamonds:0, stageStars:{wald:[0,0,0,0],bergwerk:[0,0,0,0],zombiedorf:[0,0,0,0],ozean:[0,0,0,0],wueste:[0,0,0,0]}, materials:{holz:0,stein:0,schleim:0,perle:0,gold:0}, craftedCounts:{}, textScale:state.textScale, speechRate:state.speechRate, showSyllables:state.showSyllables, dyslexicFont:state.dyslexicFont, lastLoginDate:null, streak:0, stats:{totalCorrect:0,totalWrong:0,wordMistakes:{}}, totalDiamondsEarned:0, milestonesSeen:{}, pendingMilestones:[], theme:'standard', avatar:{headDesign:'a',shirt:'teal',pants:'darkblue',print:'none'}, ownedClothing:{headDesign:['a'],shirt:['teal'],pants:['darkblue'],print:['none']}, plot:{terrain:'wald',placed:[],charPos:null,name:''}, soundEnabled:state.soundEnabled, dailyLog:{}, devMode:state.devMode };
   applyTheme();
   saveState();
   document.getElementById('start-new').classList.remove('hidden');
@@ -1445,10 +1513,30 @@ function closeMilestonePopup(){
   updateSettingsUI();
   setTimeout(maybeShowMilestonePopup, 300);
 }
+const MASCOT_MESSAGES = [
+  'Du machst das richtig gut! 💪',
+  'Ich glaube fest an dich!',
+  'Schön, dass du wieder da bist! 🐉',
+  'Jede Aufgabe macht dich ein bisschen stärker!',
+  'Du bist schon richtig weit gekommen!',
+  'Nicht aufgeben, auch wenn mal was schwerfällt!',
+  'Ich bin stolz auf dich!',
+  'Tipp: In den Einstellungen kannst du Wörter bunt in Silben einteilen lassen! 🧩',
+  'Tipp: Schau mal in der Werkstatt vorbei und gestalte dein eigenes Grundstück! 🏡',
+  'Tipp: Du kannst deinen Charakter komplett selbst anziehen und gestalten!',
+  'Tipp: Bei Lesetexten kannst du laut vorlesen – ich höre dir zu! 🎤',
+  'Tipp: Jeden Tag gibt es einen kleinen Diamanten-Bonus, wenn du reinschaust!',
+  'Tipp: In der Wiederholungsrunde übst du nochmal, was noch schwerfällt – das ist kein Fehler, das ist Übung!',
+  'Fehler gehören dazu – Hauptsache, du machst weiter!',
+  'Du liest schon richtig viele Wörter – klasse!',
+];
+
 function renderMascot(){
   const row = document.getElementById('mascot-row');
   if(state.totalDiamondsEarned >= 30){
     row.classList.remove('hidden');
+    const msg = MASCOT_MESSAGES[Math.floor(Math.random() * MASCOT_MESSAGES.length)];
+    document.getElementById('mascot-text').textContent = msg;
   } else {
     row.classList.add('hidden');
   }
@@ -1474,7 +1562,7 @@ function renderRecipes(){
   const grid = document.getElementById('recipe-grid');
   grid.innerHTML = '';
   RECIPES.forEach(r=>{
-    if(r.milestoneGate){
+    if(r.milestoneGate && !state.devMode){
       const gate = MILESTONES.find(m=>m.id===r.milestoneGate);
       if(gate && state.totalDiamondsEarned < gate.threshold) return; // noch nicht freigeschaltet - gar nicht anzeigen
     }
@@ -1552,21 +1640,10 @@ function getPlotSize(){
 function plotItemPlacedCount(itemId){
   return state.plot.placed.filter(p=>p.itemId===itemId).length;
 }
-function plotCellOccupied(x,y){
-  if(state.plot.placed.some(p=>p.x===x && p.y===y)) return true;
-  if(state.plot.charPos && state.plot.charPos.x===x && state.plot.charPos.y===y) return true;
-  return false;
-}
-function ensureCharPos(size){
-  if(!state.plot.charPos || state.plot.charPos.x>=size || state.plot.charPos.y>=size){
-    state.plot.charPos = { x:Math.floor(size/2), y:Math.floor(size/2) };
-  }
-}
-
 function renderTerrainPicker(){
   const box = document.getElementById('terrain-picker');
   box.innerHTML = TERRAINS.map(t=>{
-    const unlocked = worldStarSum(t.id) > 0;
+    const unlocked = state.devMode || worldStarSum(t.id) > 0;
     const active = state.plot.terrain === t.id;
     return `<button class="toggle-btn ${active?'active':''}" ${unlocked?`onclick="setPlotTerrain('${t.id}')"`:'disabled'}>${t.emoji} ${t.name}${unlocked?'':' 🔒'}</button>`;
   }).join('');
@@ -1578,11 +1655,23 @@ function setPlotTerrain(id){
   renderPlot();
 }
 
+function cellHasWeg(x,y){
+  return state.plot.placed.some(p => p.x===x && p.y===y && p.itemId==='weg');
+}
+function canCharStandAt(x,y){
+  const placed = state.plot.placed.find(p => p.x===x && p.y===y);
+  return !placed || placed.itemId === 'weg'; // freies Feld oder Weg - alles andere ist "belegt"
+}
+
 function renderPlot(){
   const size = getPlotSize();
-  ensureCharPos(size);
   // Innerhalb der Grenzen halten, falls die Größe sich (theoretisch) ändert
   state.plot.placed = state.plot.placed.filter(p => p.x < size && p.y < size);
+  // Charakter nur behalten, wenn er wirklich (noch) auf einem Weg steht
+  if(state.plot.charPos){
+    const {x,y} = state.plot.charPos;
+    if(x >= size || y >= size || !canCharStandAt(x,y)) state.plot.charPos = null;
+  }
 
   const terrain = TERRAINS.find(t=>t.id===state.plot.terrain) || TERRAINS[0];
   const grid = document.getElementById('plot-grid');
@@ -1593,18 +1682,27 @@ function renderPlot(){
     for(let x=0; x<size; x++){
       const cell = document.createElement('div');
       cell.className = 'plot-cell';
-      cell.style.background = terrain.colors[(x+y)%2];
       cell.dataset.x = x; cell.dataset.y = y;
 
       const placed = state.plot.placed.find(p=>p.x===x && p.y===y);
-      const isChar = state.plot.charPos.x===x && state.plot.charPos.y===y;
-      if(placed){
-        const r = RECIPES.find(r=>r.id===placed.itemId);
-        cell.textContent = r ? r.emoji : '❓';
-      } else if(isChar){
-        const charSize = size<=4 ? 32 : (size===5 ? 27 : 23);
-        cell.innerHTML = `<div style="--pc-size:${charSize}px; pointer-events:none;">${avatarHTML()}</div>`;
+      const placedRecipe = placed ? RECIPES.find(r=>r.id===placed.itemId) : null;
+      const isFullTile = placedRecipe && placedRecipe.fullTile;
+
+      cell.style.background = isFullTile ? placedRecipe.tileBackground : terrain.colors[(x+y)%2];
+
+      let inner = '';
+      if(placedRecipe && !isFullTile){
+        inner += placedRecipe.emoji;
+      } else if(placed && !placedRecipe){
+        inner += '❓';
       }
+      const isChar = state.plot.charPos && state.plot.charPos.x===x && state.plot.charPos.y===y;
+      if(isChar){
+        const charSize = size<=4 ? 32 : (size===5 ? 27 : 23);
+        inner += `<div style="--pc-size:${charSize}px; pointer-events:none;">${avatarHTML()}</div>`;
+      }
+      cell.innerHTML = inner;
+
       cell.onclick = ()=> onPlotCellTap(x,y);
       cell.ondragover = (e)=>{ e.preventDefault(); cell.classList.add('drop-hover'); };
       cell.ondragleave = ()=> cell.classList.remove('drop-hover');
@@ -1621,33 +1719,62 @@ function onPlotCellTap(x,y){
     handlePlotDrop(plotSelected, x, y);
     return;
   }
-  // Nichts ausgewählt: aufheben, was hier steht
+  // Nichts ausgewählt: zuerst den Charakter aufheben (steht "oben"), sonst das Objekt darunter
+  const isCharHere = state.plot.charPos && state.plot.charPos.x===x && state.plot.charPos.y===y;
+  if(isCharHere){
+    plotSelected = 'CHAR';
+    state.plot.charPos = null;
+    saveState();
+    renderPlot();
+    return;
+  }
   const placedIdx = state.plot.placed.findIndex(p=>p.x===x && p.y===y);
   if(placedIdx !== -1){
     plotSelected = state.plot.placed[placedIdx].itemId;
     state.plot.placed.splice(placedIdx,1);
     saveState();
     renderPlot();
-  } else if(state.plot.charPos.x===x && state.plot.charPos.y===y){
-    plotSelected = 'CHAR';
-    renderPlot();
   }
 }
 
 function handlePlotDrop(itemId, x, y){
   if(!itemId) return;
-  if(plotCellOccupied(x,y)) return; // Feld belegt - Ablegen ignorieren
   if(itemId === 'CHAR'){
+    if(!canCharStandAt(x,y)){
+      flashPlotHint('Da steht schon etwas – so kann der Charakter nicht hin! 🚫');
+      return;
+    }
     state.plot.charPos = { x, y };
-  } else {
+    plotSelected = null;
+    saveState();
+    renderPlot();
+    return;
+  }
+  const alreadyHere = state.plot.placed.some(p=>p.x===x && p.y===y);
+  if(alreadyHere) return; // Feld schon mit einem Gegenstand belegt
+  if(!state.devMode){
     const total = state.craftedCounts[itemId] || 0;
     const already = plotItemPlacedCount(itemId);
     if(already >= total) return;
-    state.plot.placed.push({ itemId, x, y });
   }
+  state.plot.placed.push({ itemId, x, y });
   plotSelected = null;
   saveState();
   renderPlot();
+}
+
+let plotHintTimer = null;
+function flashPlotHint(message){
+  const hint = document.getElementById('plot-hint');
+  if(!hint) return;
+  if(!hint.dataset.original) hint.dataset.original = hint.textContent;
+  hint.textContent = message;
+  hint.style.color = '#C6543F';
+  clearTimeout(plotHintTimer);
+  plotHintTimer = setTimeout(()=>{
+    hint.textContent = hint.dataset.original;
+    hint.style.color = '';
+  }, 2400);
 }
 
 function renderPlotInventory(){
@@ -1660,11 +1787,13 @@ function renderPlotInventory(){
       <div style="--pc-size:22px; pointer-events:none;">${avatarHTML()}</div>
       <span class="pic-count">Du</span>
     </div>`;
-  const built = RECIPES.filter(r => (state.craftedCounts[r.id]||0) > 0 && r.placeable !== false);
+  const built = state.devMode
+    ? RECIPES.filter(r => r.placeable !== false)
+    : RECIPES.filter(r => (state.craftedCounts[r.id]||0) > 0 && r.placeable !== false);
   const itemChips = built.map(r=>{
     const total = state.craftedCounts[r.id] || 0;
     const already = plotItemPlacedCount(r.id);
-    const remaining = total - already;
+    const remaining = state.devMode ? 999 : (total - already);
     const selected = plotSelected === r.id;
     return `
       <div class="plot-item-chip ${selected?'selected':''} ${remaining<=0?'empty':''}" ${remaining>0?'draggable="true"':''}
@@ -1672,14 +1801,14 @@ function renderPlotInventory(){
         ondragstart="event.dataTransfer.setData('text/plain','${r.id}')"
         ontouchstart="startPlotTouchDrag(event,'${r.id}','${r.emoji}')">
         <span style="font-size:22px;">${r.emoji}</span>
-        <span class="pic-count">${remaining}/${total}</span>
+        <span class="pic-count">${state.devMode ? '∞' : `${remaining}/${total}`}</span>
       </div>`;
   }).join('');
   box.innerHTML = charChip + (itemChips || '<span class="empty-note">Noch nichts gebaut – sammle Rohstoffe und leg los!</span>');
 }
 
 function selectPlotItem(itemId){
-  if(itemId !== 'CHAR'){
+  if(itemId !== 'CHAR' && !state.devMode){
     const total = state.craftedCounts[itemId] || 0;
     const already = plotItemPlacedCount(itemId);
     if(already >= total) return;
@@ -1691,7 +1820,7 @@ function selectPlotItem(itemId){
 /* ---- Touch-Ziehen (echtes Ziehen mit dem Finger) ---- */
 let plotGhostEl = null;
 function startPlotTouchDrag(e, itemId, emoji){
-  if(itemId !== 'CHAR'){
+  if(itemId !== 'CHAR' && !state.devMode){
     const total = state.craftedCounts[itemId] || 0;
     const already = plotItemPlacedCount(itemId);
     if(already >= total) return;
@@ -1777,7 +1906,7 @@ function renderWorldGrid(){
   grid.innerHTML = '';
   const stars = totalStars();
   WORLDS.forEach(w=>{
-    const unlocked = stars >= w.unlockAt;
+    const unlocked = state.devMode || stars >= w.unlockAt;
     const earned = worldStarSum(w.id);
     const div = document.createElement('div');
     div.className = `world-card ${w.cls} ${unlocked?'':'locked'}`;
@@ -1808,9 +1937,9 @@ function renderStageSelect(worldId){
   const names = STAGE_NAMES[worldId];
   for(let i=0; i<4; i++){
     const isBonus = i === 3;
-    const unlocked = isBonus
+    const unlocked = state.devMode || (isBonus
       ? (stageStars[0]>=1 && stageStars[1]>=1 && stageStars[2]>=1)
-      : (i === 0 || stageStars[i-1] >= 1);
+      : (i === 0 || stageStars[i-1] >= 1));
     const earned = stageStars[i];
     const card = document.createElement('div');
     card.className = `stage-card ${unlocked ? '' : 'locked'} ${isBonus ? 'stage-bonus' : ''}`;
@@ -2004,6 +2133,7 @@ function showReadAloudResult(targetText, transcript, resultBox){
 function renderTask(){
   const total = currentTaskList.length;
   document.getElementById('progress-fill').style.width = `${(currentTaskIndex/total)*100}%`;
+  document.getElementById('dev-skip-btn').classList.toggle('hidden', !state.devMode);
   hideFeedback();
 
   if(currentTaskIndex >= total){
@@ -2023,6 +2153,14 @@ function renderTask(){
   else if(task.type === 'order') renderOrderTask(card, task);
   else if(task.type === 'read') renderReadTask(card, task);
   else if(task.type === 'match') renderMatchTask(card, task);
+}
+
+function skipTaskDev(){
+  if(!state.devMode) return;
+  speechSynthesis.cancel();
+  if(currentRecognition){ currentRecognition.abort(); currentRecognition = null; }
+  currentTaskIndex++;
+  renderTask();
 }
 
 function showReviewIntro(){
@@ -2417,7 +2555,7 @@ function applyTheme(){
 function openThemePicker(){
   const list = document.getElementById('theme-list');
   list.innerHTML = THEMES.map(t=>{
-    const unlocked = state.totalDiamondsEarned >= t.unlockAt;
+    const unlocked = state.devMode || state.totalDiamondsEarned >= t.unlockAt;
     const selected = state.theme === t.id;
     return `
       <div class="theme-swatch ${selected?'selected':''} ${unlocked?'':'locked'}" ${unlocked ? `onclick="selectTheme('${t.id}')"` : ''}>
@@ -2433,7 +2571,7 @@ function openThemePicker(){
 }
 function selectTheme(id){
   const t = THEMES.find(x=>x.id===id);
-  if(!t || state.totalDiamondsEarned < t.unlockAt) return;
+  if(!t || (!state.devMode && state.totalDiamondsEarned < t.unlockAt)) return;
   state.theme = id;
   saveState();
   applyTheme();
@@ -2527,16 +2665,16 @@ function renderClothingShop(){
   box.innerHTML = Object.keys(CLOTHING).map(slot=>{
     const items = CLOTHING[slot].map(item=>{
       const owned = state.ownedClothing[slot].includes(item.id);
-      const craftLocked = item.unlockedByCraft && !(state.craftedCounts[item.unlockedByCraft] > 0);
-      const milestoneLocked = item.unlockedByMilestone && state.totalDiamondsEarned < item.unlockedByMilestone;
+      const craftLocked = !state.devMode && item.unlockedByCraft && !(state.craftedCounts[item.unlockedByCraft] > 0);
+      const milestoneLocked = !state.devMode && item.unlockedByMilestone && state.totalDiamondsEarned < item.unlockedByMilestone;
       const locked = craftLocked || milestoneLocked;
       const equipped = state.avatar[slot] === item.id;
       const swatch = item.color ? `background:${item.color};` : 'background:#eee;';
       let costLabel;
       if(locked){
         costLabel = craftLocked ? `🔒 Werkstatt` : `🔒 Ab ${item.unlockedByMilestone} 💎`;
-      } else if(owned){
-        costLabel = equipped ? 'Angezogen ✅' : 'Anziehen';
+      } else if(owned || state.devMode){
+        costLabel = equipped ? 'Angezogen ✅' : (state.devMode ? 'Dev: frei' : 'Anziehen');
       } else {
         costLabel = `${item.cost} 💎`;
       }
@@ -2564,9 +2702,11 @@ function renderClothingShop(){
 }
 function buyOrEquipClothing(slot, itemId){
   const item = getClothingItem(slot, itemId);
-  if(item.unlockedByCraft && !(state.craftedCounts[item.unlockedByCraft] > 0)) return;
-  if(item.unlockedByMilestone && state.totalDiamondsEarned < item.unlockedByMilestone) return;
-  const owned = state.ownedClothing[slot].includes(itemId) || item.unlockedByCraft || item.unlockedByMilestone;
+  if(!state.devMode){
+    if(item.unlockedByCraft && !(state.craftedCounts[item.unlockedByCraft] > 0)) return;
+    if(item.unlockedByMilestone && state.totalDiamondsEarned < item.unlockedByMilestone) return;
+  }
+  const owned = state.devMode || state.ownedClothing[slot].includes(itemId) || item.unlockedByCraft || item.unlockedByMilestone;
   if(!owned){
     if(item.cost > 0){
       if(state.diamonds < item.cost) return;
@@ -2596,13 +2736,14 @@ function updateSettingsUI(){
   if(state.speechRate===1) document.getElementById('rate-2').classList.add('active');
   document.getElementById('syllable-toggle').classList.toggle('active', state.showSyllables);
   document.getElementById('sound-toggle').classList.toggle('active', state.soundEnabled);
+  document.getElementById('devmode-toggle').classList.toggle('active', state.devMode);
   document.getElementById('font-toggle').classList.toggle('active', state.dyslexicFont);
   const themeBtn = document.getElementById('theme-btn');
-  const themeUnlocked = state.totalDiamondsEarned >= 75;
+  const themeUnlocked = state.devMode || state.totalDiamondsEarned >= 75;
   themeBtn.textContent = themeUnlocked ? '🎨 Auswählen' : '🔒 Ab 75 💎';
   themeBtn.disabled = !themeUnlocked;
   const certBtn = document.getElementById('certificate-btn');
-  const certUnlocked = state.totalDiamondsEarned >= 150;
+  const certUnlocked = state.devMode || state.totalDiamondsEarned >= 150;
   certBtn.textContent = certUnlocked ? '📜 Ansehen' : '🔒 Ab 150 💎';
   certBtn.disabled = !certUnlocked;
 }
@@ -2618,9 +2759,46 @@ function toggleSound(){
   if(state.soundEnabled) playCorrectSound();
 }
 
+/* ===================== DEV MODE ===================== */
+function toggleDevMode(){
+  if(state.devMode){
+    state.devMode = false;
+    saveState();
+    updateSettingsUI();
+    updateDevBadge();
+  } else {
+    openDevPasswordPrompt();
+  }
+}
+function openDevPasswordPrompt(){
+  document.getElementById('dev-password-input').value = '';
+  document.getElementById('dev-password-error').textContent = '';
+  document.getElementById('screen-devpassword').classList.remove('hidden');
+  document.getElementById('screen-devpassword').style.display = 'flex';
+  setTimeout(()=> document.getElementById('dev-password-input').focus(), 50);
+}
+function closeDevPasswordPrompt(){
+  document.getElementById('screen-devpassword').classList.add('hidden');
+}
+function submitDevPassword(){
+  const val = document.getElementById('dev-password-input').value;
+  if(val === '6299'){
+    state.devMode = true;
+    saveState();
+    closeDevPasswordPrompt();
+    updateSettingsUI();
+    updateDevBadge();
+  } else {
+    document.getElementById('dev-password-error').textContent = 'Falsches Passwort.';
+  }
+}
+function updateDevBadge(){
+  document.getElementById('dev-badge').classList.toggle('hidden', !state.devMode);
+}
+
 /* ===================== CERTIFICATE ===================== */
 function openCertificate(){
-  if(state.totalDiamondsEarned < 150) return;
+  if(!state.devMode && state.totalDiamondsEarned < 150) return;
   document.getElementById('cert-avatar').innerHTML = avatarHTML();
   document.getElementById('cert-name').textContent = state.name;
   const stars = totalStars();
