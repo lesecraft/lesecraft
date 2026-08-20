@@ -137,6 +137,7 @@
     border-radius:8px; border:4px solid var(--dirt-dark); text-align:center; width:260px; max-width:80vw;
     margin-bottom:18px;
   }
+  .gender-picker{ display:flex; gap:10px; justify-content:center; margin-bottom:18px; }
 
   /* ---------- World map ---------- */
   .world-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:18px; width:100%; max-width:640px; margin-top:10px;}
@@ -522,6 +523,10 @@
   <div id="start-new">
     <input id="name-input" type="text" placeholder="Wie heißt du?" value="Anton">
     <br>
+    <div class="gender-picker" id="gender-picker">
+      <button type="button" class="toggle-btn active" data-gender="m" onclick="pickStartGender('m')">👦 Junge</button>
+      <button type="button" class="toggle-btn" data-gender="f" onclick="pickStartGender('f')">👧 Mädchen</button>
+    </div>
     <button class="block-btn gold big" onclick="startGame()">Los geht's! 🚀</button>
   </div>
   <div id="start-continue" class="hidden" style="margin-top:8px; text-align:center;">
@@ -650,6 +655,13 @@
       <div class="settings-row">
         <span class="read-text" style="font-size:1.05rem;">Schriftart</span>
         <button class="toggle-btn" id="font-toggle" onclick="toggleDyslexicFont()">🔤 OpenDyslexic</button>
+      </div>
+      <div class="settings-row">
+        <span class="read-text" style="font-size:1.05rem;">Ich bin ein...</span>
+        <div>
+          <button class="toggle-btn" id="gender-m-btn" onclick="setGender('m')">👦 Junge</button>
+          <button class="toggle-btn" id="gender-f-btn" onclick="setGender('f')">👧 Mädchen</button>
+        </div>
       </div>
       <div class="settings-row" id="theme-row">
         <span class="read-text" style="font-size:1.05rem;">Farbthema</span>
@@ -863,8 +875,8 @@ const TASKS = {
     [ // Stufe 1: Lichtung
       { type:'gap', sentence:['Der Bauer pflanzt einen', '___', 'im Garten.'], answer:'Baum', options:['Baum','Stein','Fisch'] },
       { type:'gap', sentence:['Die', '___', 'frisst saftiges Gras.'], answer:'Kuh', options:['Kuh','Wolke','Truhe'] },
-      { type:'order', sentences:['{name} wacht auf.', '{name} zieht {name_gen} Rüstung an.', 'Dann geht {name} in den Wald.', 'Dort fällt {name} einen Baum.'] },
-      { type:'read', text:'{name} baut sich ein kleines Haus aus Holz. {name} nimmt {name_gen} Axt und schlägt Bretter zurecht. Am Abend ist das Dach fertig und {name} ist stolz.', question:'Woraus baut {name} das Haus?', options:['Aus Holz','Aus Stein','Aus Eis'], answer:'Aus Holz' },
+      { type:'order', sentences:['{name} wacht auf.', '{name} zieht {seine} Rüstung an.', 'Dann geht {name} in den Wald.', 'Dort fällt {name} einen Baum.'] },
+      { type:'read', text:'{name} baut sich ein kleines Haus aus Holz. {Er} nimmt {seine} Axt und schlägt Bretter zurecht. Am Abend ist das Dach fertig und {er} ist stolz.', question:'Woraus baut {name} das Haus?', options:['Aus Holz','Aus Stein','Aus Eis'], answer:'Aus Holz' },
       { type:'match', pairs:[ ['Baum','🌳'], ['Axt','🪓'], ['Haus','🏠'], ['Blume','🌼'] ] },
     ],
     [ // Stufe 2: Dickicht
@@ -878,14 +890,14 @@ const TASKS = {
       { type:'gap', sentence:['Ein Eichhörnchen sammelt', '___', 'für den Winter.'], answer:'Nüsse', options:['Nüsse','Steine','Bücher'] },
       { type:'gap', sentence:['Zwischen den Bäumen wächst ein bunter', '___', '.'], answer:'Pilz', options:['Pilz','Stein','Fisch'] },
       { type:'order', sentences:['{name} findet einen Schmetterling.', 'Er beobachtet ihn ganz leise.', 'Der Schmetterling setzt sich auf eine Blume.', 'Dann fliegt er weiter.'] },
-      { type:'read', text:'Tief im Wald steht ein altes Baumhaus. {name} klettert die Leiter hinauf. Oben hat {name} eine tolle Aussicht über den ganzen Wald.', question:'Wohin klettert {name}?', options:['Auf ein Baumhaus','Auf einen Turm','Auf ein Boot'], answer:'Auf ein Baumhaus' },
+      { type:'read', text:'Tief im Wald steht ein altes Baumhaus. {name} klettert die Leiter hinauf. Oben hat {er} eine tolle Aussicht über den ganzen Wald.', question:'Wohin klettert {name}?', options:['Auf ein Baumhaus','Auf einen Turm','Auf ein Boot'], answer:'Auf ein Baumhaus' },
       { type:'match', pairs:[ ['Eichhörnchen','🐿️'], ['Schmetterling','🦋'], ['Baumhaus','🏡'], ['Pilz','🍄'] ] },
     ],
     [ // Stufe 4: Meisterprüfung
       { type:'gap', sentence:['Der', '___', 'hüpft neben dem Baum im Gras.'], answer:'Hase', options:['Hase','Fuchs','Vogel'] },
       { type:'gap', sentence:['Ein Eichhörnchen versteckt Nüsse unter dem', '___', '.'], answer:'Pilz', options:['Pilz','Blume','Baum'] },
       { type:'order', sentences:['{name} sammelt Nüsse.', '{name} entdeckt einen Pilz.', 'Ein Fuchs schaut neugierig zu.', '{name} lächelt und geht weiter.'] },
-      { type:'read', text:'Am Ende des Tages sitzt {name} unter {name_gen} Baumhaus. Ein Eichhörnchen springt von Ast zu Ast. Ein Schmetterling landet auf {name_gen} Hand.', question:'Was landet auf {name_gen} Hand?', options:['Ein Schmetterling','Ein Fuchs','Ein Boot'], answer:'Ein Schmetterling' },
+      { type:'read', text:'Am Ende des Tages sitzt {name} unter {seinem} Baumhaus. Ein Eichhörnchen springt von Ast zu Ast. Ein Schmetterling landet auf {seiner} Hand.', question:'Was landet auf {name_gen} Hand?', options:['Ein Schmetterling','Ein Fuchs','Ein Boot'], answer:'Ein Schmetterling' },
       { type:'match', pairs:[ ['Hase','🐰'], ['Fuchs','🦊'], ['Eichhörnchen','🐿️'], ['Schmetterling','🦋'] ] },
     ],
   ],
@@ -894,13 +906,13 @@ const TASKS = {
       { type:'gap', sentence:['{name} schürft mit der', '___', 'nach Diamanten.'], answer:'Spitzhacke', options:['Spitzhacke','Angel','Feder'] },
       { type:'gap', sentence:['Tief unter der Erde ist es', '___', 'und dunkel.'], answer:'kalt', options:['kalt','bunt','laut'] },
       { type:'order', sentences:['{name} gräbt ein Loch.', '{name} findet eine Höhle.', 'In der Höhle glitzert ein Diamant.', '{name} steckt ihn stolz ein.'] },
-      { type:'read', text:'Im Bergwerk ist es dunkel. {name} stellt eine Fackel an die Wand. Jetzt kann {name} die glänzenden Steine gut sehen. Vorsichtig gräbt {name} weiter.', question:'Was macht {name}, damit {name} sehen kann?', options:['Er stellt eine Fackel auf','Er schließt die Augen','Er singt ein Lied'], answer:'Er stellt eine Fackel auf' },
+      { type:'read', text:'Im Bergwerk ist es dunkel. {name} stellt eine Fackel an die Wand. Jetzt kann {er} die glänzenden Steine gut sehen. Vorsichtig gräbt {er} weiter.', question:'Was macht {name}, damit {er} sehen kann?', options:['{Er} stellt eine Fackel auf','{Er} schließt die Augen','{Er} singt ein Lied'], answer:'{Er} stellt eine Fackel auf' },
       { type:'match', pairs:[ ['Diamant','💎'], ['Fackel','🔥'], ['Höhle','🕳️'], ['Stein','🪨'] ] },
     ],
     [ // Stufe 2: Stollen
       { type:'gap', sentence:['{name} trägt einen', '___', 'auf dem Kopf.'], answer:'Helm', options:['Helm','Hut','Schal'] },
       { type:'order', sentences:['{name} hört ein Geräusch.', '{name} leuchtet mit der Fackel in die Ecke.', 'Dort sitzt eine kleine Fledermaus.', '{name} lächelt und geht weiter.'] },
-      { type:'read', text:'{name} baut eine Treppe tief in die Erde. Stufe für Stufe geht {name} nach unten. Nach vielen Minuten erreicht {name} eine große Höhle voller Kristalle.', question:'Was baut {name}?', options:['Eine Treppe','Ein Boot','Eine Brücke'], answer:'Eine Treppe' },
+      { type:'read', text:'{name} baut eine Treppe tief in die Erde. Stufe für Stufe geht {er} nach unten. Nach vielen Minuten erreicht {er} eine große Höhle voller Kristalle.', question:'Was baut {name}?', options:['Eine Treppe','Ein Boot','Eine Brücke'], answer:'Eine Treppe' },
       { type:'gap', sentence:['In der Mine findet {name} auch glänzendes', '___', '.'], answer:'Eisen', options:['Eisen','Wasser','Brot'] },
       { type:'match', pairs:[ ['Helm','⛑️'], ['Eisen','⚙️'], ['Treppe','🪜'], ['Fledermaus','🦇'] ] },
     ],
@@ -908,14 +920,14 @@ const TASKS = {
       { type:'gap', sentence:['{name} schiebt eine schwere', '___', 'durch den Tunnel.'], answer:'Lore', options:['Lore','Blume','Ente'] },
       { type:'gap', sentence:['An der Decke hängt eine kleine', '___', '.'], answer:'Lampe', options:['Lampe','Feder','Wolke'] },
       { type:'order', sentences:['{name} bindet ein Seil um einen Felsen.', '{name} klettert vorsichtig nach unten.', 'Tief unten glitzert ein Kristall.', '{name} zieht sich am Seil wieder hoch.'] },
-      { type:'read', text:'In einer geheimen Kammer trifft {name} einen freundlichen Zwerg. Der Zwerg zeigt {name} die schönsten Edelsteine der Mine. {name} bedankt sich und schenkt {name} einen Apfel.', question:'Wen trifft {name} in der Kammer?', options:['Einen freundlichen Zwerg','Einen Fisch','Einen Vogel'], answer:'Einen freundlichen Zwerg' },
+      { type:'read', text:'In einer geheimen Kammer trifft {name} einen freundlichen Zwerg. Der Zwerg zeigt {ihm} die schönsten Edelsteine der Mine. {Er} bedankt sich und schenkt {ihm} einen Apfel.', question:'Wen trifft {name} in der Kammer?', options:['Einen freundlichen Zwerg','Einen Fisch','Einen Vogel'], answer:'Einen freundlichen Zwerg' },
       { type:'match', pairs:[ ['Lore','🛒'], ['Lampe','💡'], ['Kristall','🔷'], ['Seil','🪢'] ] },
     ],
     [ // Stufe 4: Meisterprüfung
       { type:'gap', sentence:['Mit der', '___', 'gräbt {name} nach Kristallen.'], answer:'Spitzhacke', options:['Spitzhacke','Lampe','Seil'] },
       { type:'gap', sentence:['Die Fledermaus fliegt an der', '___', 'vorbei.'], answer:'Lampe', options:['Lampe','Treppe','Lore'] },
       { type:'order', sentences:['{name} zieht den Helm auf.', '{name} schiebt die Lore in den Stollen.', 'Tief unten trifft {name} den Zwerg.', 'Gemeinsam finden sie einen Diamanten.'] },
-      { type:'read', text:'In der tiefsten Kammer der Mine glitzert es überall. {name} leuchtet mit der Lampe in jede Ecke. Der Zwerg zeigt {name} den größten Diamanten der ganzen Mine.', question:'Was zeigt der Zwerg?', options:['Den größten Diamanten','Eine Landkarte','Ein Boot'], answer:'Den größten Diamanten' },
+      { type:'read', text:'In der tiefsten Kammer der Mine glitzert es überall. {name} leuchtet mit der Lampe in jede Ecke. Der Zwerg zeigt {ihm} den größten Diamanten der ganzen Mine.', question:'Was zeigt der Zwerg?', options:['Den größten Diamanten','Eine Landkarte','Ein Boot'], answer:'Den größten Diamanten' },
       { type:'match', pairs:[ ['Spitzhacke','⛏️'], ['Helm','⛑️'], ['Lore','🛒'], ['Diamant','💎'] ] },
     ],
   ],
@@ -954,13 +966,13 @@ const TASKS = {
       { type:'gap', sentence:['Im', '___', 'schwimmen bunte Fische.'], answer:'Ozean', options:['Ozean','Wüste','Bergwerk'] },
       { type:'gap', sentence:['{name} baut ein Boot, um zu', '___', '.'], answer:'segeln', options:['segeln','klettern','graben'] },
       { type:'order', sentences:['{name} baut ein Boot.', '{name} fährt aufs Wasser hinaus.', 'Ein Delfin schwimmt neben {name}.', 'Am Abend fährt {name} zurück.'] },
-      { type:'read', text:'{name} entdeckt ein altes Schiffswrack tief im Wasser. {name} taucht hinunter und findet eine Schatzkiste. In der Kiste liegen glänzende Perlen.', question:'Was findet {name} in der Kiste?', options:['Glänzende Perlen','Ein Buch','Alte Schuhe'], answer:'Glänzende Perlen' },
+      { type:'read', text:'{name} entdeckt ein altes Schiffswrack tief im Wasser. {Er} taucht hinunter und findet eine Schatzkiste. In der Kiste liegen glänzende Perlen.', question:'Was findet {name} in der Kiste?', options:['Glänzende Perlen','Ein Buch','Alte Schuhe'], answer:'Glänzende Perlen' },
       { type:'match', pairs:[ ['Fisch','🐟'], ['Boot','⛵'], ['Perle','⚪'], ['Welle','🌊'] ] },
     ],
     [ // Stufe 2: Riff
       { type:'gap', sentence:['{name} taucht tief unter das', '___', '.'], answer:'Wasser', options:['Wasser','Feuer','Sand'] },
       { type:'order', sentences:['{name} zieht den Taucheranzug an.', '{name} springt ins Wasser.', 'Unter Wasser sieht {name} bunte Korallen.', '{name} schwimmt zurück zum Boot.'] },
-      { type:'read', text:'Tief im Meer entdeckt {name} eine Höhle aus Korallen. Kleine Fische schwimmen durch die bunten Löcher. {name} fotografiert die schönsten Fische mit der Kamera.', question:'Was fotografiert {name}?', options:['Die schönsten Fische','Sein Boot','Den Mond'], answer:'Die schönsten Fische' },
+      { type:'read', text:'Tief im Meer entdeckt {name} eine Höhle aus Korallen. Kleine Fische schwimmen durch die bunten Löcher. {Er} fotografiert die schönsten Fische mit der Kamera.', question:'Was fotografiert {name}?', options:['Die schönsten Fische','Sein Boot','Den Mond'], answer:'Die schönsten Fische' },
       { type:'gap', sentence:['Ein bunter', '___', 'schwimmt vorbei.'], answer:'Fisch', options:['Fisch','Stein','Vogel'] },
       { type:'match', pairs:[ ['Koralle','🪸'], ['Taucheranzug','🤿'], ['Kamera','📷'], ['Delfin','🐬'] ] },
     ],
@@ -984,13 +996,13 @@ const TASKS = {
       { type:'gap', sentence:['In der Wüste ist heißer', '___', 'überall.'], answer:'Sand', options:['Sand','Schnee','Wasser'] },
       { type:'gap', sentence:['{name} findet eine alte', '___', 'im Sand.'], answer:'Pyramide', options:['Pyramide','Blume','Angel'] },
       { type:'order', sentences:['{name} läuft durch die Wüste.', 'Die Sonne brennt heiß.', '{name} entdeckt eine Pyramide.', 'Im Inneren findet {name} goldene Schätze.'] },
-      { type:'read', text:'Tief in der Pyramide ist es still. {name} leuchtet mit der Fackel in jede Ecke. Plötzlich sieht {name} eine goldene Truhe. Vorsichtig öffnet {name} den Deckel.', question:'Was sieht {name} in der Pyramide?', options:['Eine goldene Truhe','Einen See','Ein Fahrrad'], answer:'Eine goldene Truhe' },
+      { type:'read', text:'Tief in der Pyramide ist es still. {name} leuchtet mit der Fackel in jede Ecke. Plötzlich sieht {er} eine goldene Truhe. Vorsichtig öffnet {er} den Deckel.', question:'Was sieht {name} in der Pyramide?', options:['Eine goldene Truhe','Einen See','Ein Fahrrad'], answer:'Eine goldene Truhe' },
       { type:'match', pairs:[ ['Sand','🏜️'], ['Pyramide','🔺'], ['Gold','🪙'], ['Sonne','☀️'] ] },
     ],
     [ // Stufe 2: Oase
       { type:'gap', sentence:['Ein', '___', 'trägt {name} durch die Wüste.'], answer:'Kamel', options:['Kamel','Boot','Zug'] },
       { type:'order', sentences:['{name} füllt die Wasserflasche.', '{name} läuft über die heißen Dünen.', 'Am Horizont sieht {name} eine Oase.', 'Dort trinkt {name} kühles Wasser.'] },
-      { type:'read', text:'In einer alten Grabkammer findet {name} geheimnisvolle Zeichen an der Wand. {name} zeichnet die Zeichen in das Buch ab. Vielleicht verraten sie den Weg zu einem Schatz.', question:'Was zeichnet {name} ab?', options:['Geheimnisvolle Zeichen','Einen Vogel','Sein Boot'], answer:'Geheimnisvolle Zeichen' },
+      { type:'read', text:'In einer alten Grabkammer findet {name} geheimnisvolle Zeichen an der Wand. {Er} zeichnet die Zeichen in das Buch ab. Vielleicht verraten sie den Weg zu einem Schatz.', question:'Was zeichnet {name} ab?', options:['Geheimnisvolle Zeichen','Einen Vogel','Sein Boot'], answer:'Geheimnisvolle Zeichen' },
       { type:'gap', sentence:['Nachts wird es in der Wüste sehr', '___', '.'], answer:'kalt', options:['kalt','warm','nass'] },
       { type:'match', pairs:[ ['Kamel','🐫'], ['Oase','🌴'], ['Düne','⛰️'], ['Zeichen','📜'] ] },
     ],
@@ -1127,9 +1139,18 @@ function nameGenitive(name){
   if(['s','ß','x','z'].includes(last)) return name + "'";
   return name + 's';
 }
+const PRONOUNS = {
+  m: { er:'er', Er:'Er', ihm:'ihm', Ihm:'Ihm', sein:'sein', Sein:'Sein', seine:'seine', Seine:'Seine', seinem:'seinem', Seinem:'Seinem', seiner:'seiner', Seiner:'Seiner' },
+  f: { er:'sie', Er:'Sie', ihm:'ihr', Ihm:'Ihr', sein:'ihr', Sein:'Ihr', seine:'ihre', Seine:'Ihre', seinem:'ihrem', Seinem:'Ihrem', seiner:'ihrer', Seiner:'Ihrer' },
+};
 function applyName(text){
   const n = state.name || 'Anton';
-  return text.split('{name_gen}').join(nameGenitive(n)).split('{name}').join(n);
+  const p = PRONOUNS[state.gender === 'f' ? 'f' : 'm'];
+  let result = text.split('{name_gen}').join(nameGenitive(n)).split('{name}').join(n);
+  Object.keys(p).forEach(key=>{
+    result = result.split('{'+key+'}').join(p[key]);
+  });
+  return result;
 }
 
 function maybeSyllablize(text){
@@ -1262,6 +1283,7 @@ const CLOTHING = {
 
 let state = {
   name:'Anton',
+  gender:'m',
   diamonds:0,
   stageStars:{ wald:[0,0,0,0], bergwerk:[0,0,0,0], zombiedorf:[0,0,0,0], ozean:[0,0,0,0], wueste:[0,0,0,0] },
   materials:{ holz:0, stein:0, schleim:0, perle:0, gold:0 },
@@ -1375,6 +1397,7 @@ function migrateOldSave(){
   if(state.soundEnabled === undefined) state.soundEnabled = true;
   if(!state.dailyLog) state.dailyLog = {};
   if(state.devMode === undefined) state.devMode = false;
+  if(!state.gender) state.gender = 'm';
   pruneDailyLog();
   if(!Array.isArray(state.plot.placed)) state.plot.placed = [];
   // Gegenstände, die es nicht mehr gibt (z.B. altes Schwert/Boot/Truhe/Laterne), vom Grundstück entfernen
@@ -1390,9 +1413,17 @@ function migrateOldSave(){
   saveState();
 }
 
+let selectedStartGender = 'm';
+function pickStartGender(g){
+  selectedStartGender = g;
+  document.querySelectorAll('#gender-picker .toggle-btn').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.gender === g);
+  });
+}
 function startGame(){
   const val = document.getElementById('name-input').value.trim();
   state.name = val || 'Anton';
+  state.gender = selectedStartGender;
   checkDailyBonus();
   saveState();
   goToHub();
@@ -1408,7 +1439,7 @@ function closeResetConfirm(){
 function doResetProgress(){
   closeResetConfirm();
   closeSettings();
-  state = { name: state.name || 'Anton', diamonds:0, stageStars:{wald:[0,0,0,0],bergwerk:[0,0,0,0],zombiedorf:[0,0,0,0],ozean:[0,0,0,0],wueste:[0,0,0,0]}, materials:{holz:0,stein:0,schleim:0,perle:0,gold:0}, craftedCounts:{}, textScale:state.textScale, speechRate:state.speechRate, showSyllables:state.showSyllables, dyslexicFont:state.dyslexicFont, lastLoginDate:null, streak:0, stats:{totalCorrect:0,totalWrong:0,wordMistakes:{}}, totalDiamondsEarned:0, milestonesSeen:{}, pendingMilestones:[], theme:'standard', avatar:{headDesign:'a',shirt:'teal',pants:'darkblue',print:'none'}, ownedClothing:{headDesign:['a'],shirt:['teal'],pants:['darkblue'],print:['none']}, plot:{terrain:'wald',placed:[],charPos:null,name:''}, soundEnabled:state.soundEnabled, dailyLog:{}, devMode:state.devMode };
+  state = { name: state.name || 'Anton', gender: state.gender || 'm', diamonds:0, stageStars:{wald:[0,0,0,0],bergwerk:[0,0,0,0],zombiedorf:[0,0,0,0],ozean:[0,0,0,0],wueste:[0,0,0,0]}, materials:{holz:0,stein:0,schleim:0,perle:0,gold:0}, craftedCounts:{}, textScale:state.textScale, speechRate:state.speechRate, showSyllables:state.showSyllables, dyslexicFont:state.dyslexicFont, lastLoginDate:null, streak:0, stats:{totalCorrect:0,totalWrong:0,wordMistakes:{}}, totalDiamondsEarned:0, milestonesSeen:{}, pendingMilestones:[], theme:'standard', avatar:{headDesign:'a',shirt:'teal',pants:'darkblue',print:'none'}, ownedClothing:{headDesign:['a'],shirt:['teal'],pants:['darkblue'],print:['none']}, plot:{terrain:'wald',placed:[],charPos:null,name:''}, soundEnabled:state.soundEnabled, dailyLog:{}, devMode:state.devMode };
   applyTheme();
   saveState();
   document.getElementById('start-new').classList.remove('hidden');
@@ -2737,6 +2768,8 @@ function updateSettingsUI(){
   document.getElementById('syllable-toggle').classList.toggle('active', state.showSyllables);
   document.getElementById('sound-toggle').classList.toggle('active', state.soundEnabled);
   document.getElementById('devmode-toggle').classList.toggle('active', state.devMode);
+  document.getElementById('gender-m-btn').classList.toggle('active', state.gender==='m');
+  document.getElementById('gender-f-btn').classList.toggle('active', state.gender==='f');
   document.getElementById('font-toggle').classList.toggle('active', state.dyslexicFont);
   const themeBtn = document.getElementById('theme-btn');
   const themeUnlocked = state.devMode || state.totalDiamondsEarned >= 75;
@@ -2757,6 +2790,11 @@ function toggleSound(){
   saveState();
   updateSettingsUI();
   if(state.soundEnabled) playCorrectSound();
+}
+function setGender(g){
+  state.gender = g;
+  saveState();
+  updateSettingsUI();
 }
 
 /* ===================== DEV MODE ===================== */
